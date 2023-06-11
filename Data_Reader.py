@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+
+def Emission_Data_Reader (): 
+    """Cette fonction lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion 
+    qui contient des informations sur les émissions de gaz d'échappement des moteurs d'avion. Par la suite
+    ce cette fonction va nettoyer les données pour en faciliter l'analyse par la suite en conservant les colonnes
+    désirées et en les renommant.
+    
+    :return: pandas dataframe
+    """
+    #Lecture du fichier CSV, selection des colonnes utiles
+    df = pd.read_csv('EmissionDatabank.csv',delimiter=';',decimal=',',usecols=(2,3,14,17,28,30,41,43,59,78,81),encoding = 'unicode_escape')
+
+    #On renomme les colonnes pour faciliter l'utilisation des données
+    #LTO = donnée pour les phases de décollage, montée et atterrissage 
+    #Cruise = donnée pour la phase de croisière
+    #HC = Hydrocarbure, CO = Monoxyde de Carbone, NOx = Oxyde d'azote, Fuel = Kérosène
+    df.columns = ['Fabricant','Modele','Statut','HC_cruise','HC_LTO','CO_cruise','CO_LTO','NOx_cruise','NOx_LTO','Fuel_cruise','Fuel_LTO']
+    #print(f"Noms des colonne : {df.columns}, shape : {df.shape}")
+
+    #Suppression des moteurs dont le statut est "Out of service"
+    df = df[df['Statut'] != 'Out of service']
+
+    #Dans le cas où un moteur est présent différente fois, on conserve seulement la première occurence
+    df = df.drop_duplicates(subset=['Modele'], keep='first')
+    
+    #Conversion des colonnes numériques en float
+    df[['HC_cruise', 'HC_LTO', 'CO_cruise', 'CO_LTO', 'NOx_cruise', 'NOx_LTO', 'Fuel_cruise','Fuel_LTO']] = df[['HC_cruise', 'HC_LTO', 'CO_cruise', 'CO_LTO', 'NOx_cruise', 'NOx_LTO', 'Fuel_cruise','Fuel_LTO']].astype(float)
+    
+    
+    #Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
+    return df
