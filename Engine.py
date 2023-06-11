@@ -22,8 +22,11 @@ class Moteur():
         self.df_moteur = df_global.loc[df_global['Modele'] == modele]
         #On réinitialise l'index à 1
         self.df_moteur.reset_index(drop=True, inplace=True)
-        #On calcul la masse de CO2 émise durant la phase LTO (g)
+        #Masse de CO2 émise durant la phase LTO (g)
         self.equivalent_carbone_LTO = self.Equivalent_Carbone_LTO()
+        #Masse de CO2 émise par seconde durant la phase de croisière (g/s)
+        self.equivalent_carbone_seconde_cruise = self.Equivalent_CarboneParSeconde_Cruise()
+        
    
     #Méthodes 
     def Conversion_Equivalent_Carbone (self, HC_value, CO_value, NOx_value):
@@ -68,10 +71,11 @@ class Moteur():
         :return: Taux équivalent CO2 de la phase de croisière g/kg.
         :rtype: float
         '''    
+        equivalent_carbone = self.Conversion_Equivalent_Carbone(self.df_moteur.loc[0,'HC_cruise'],self.df_moteur.loc[0,'CO_cruise'],self.df_moteur.loc[0,'NOx_cruise'])
+        taux_CO2_cruise = sum(equivalent_carbone)
+        return taux_CO2_cruise 
     
-        return taux_CO2_cruise
-    
-    def Equivalent_Carbone_Cruise(self): 
+    def Equivalent_CarboneParSeconde_Cruise(self): 
         '''
         Retourne la masse rejeté en équivalent carbone pendant la phase de croisière du moteur 
         en gramme par seconde (g/s). 
@@ -79,5 +83,10 @@ class Moteur():
         :return: Masse équivalent CO2 de la phase cruise en gramme/s.
         :rtype: float
         ''' 
-    
+        #Emission CO2 en gramme par kg de fuel consommé
+        taux_CO2_cruise = self.Taux_Carbone_Cruise()
+        #Consommation en kg de fuel par seconde
+        consommation_fuel = self.df_moteur.loc[0,'Fuel_cruise']
+        #Emission de CO2 en gramme par seconde de vol en croisière
+        return round(taux_CO2_cruise*consommation_fuel,1)
     
