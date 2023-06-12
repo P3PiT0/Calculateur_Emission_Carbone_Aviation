@@ -16,15 +16,22 @@ class Moteur():
         :param df_global: Dataframe contenant les informations de tous les moteurs
         :type constructeur: Pandas Dataframe
         '''
-        self.modele = modele 
-        #Selectionne et retourne la ligne de notre dataframe contenant le modèle de notre moteur avec ses informations
-        self.df_moteur = df_global.loc[df_global['Modele'] == modele]
-        #On réinitialise l'index à 1
-        self.df_moteur.reset_index(drop=True, inplace=True)
-        #Masse de CO2 émise durant la phase LTO (g)
-        self.equivalent_carbone_LTO = self.Equivalent_Carbone_LTO()
-        #Masse de CO2 émise par seconde durant la phase de croisière (g/s)
-        self.equivalent_carbone_seconde_cruise = self.Equivalent_CarboneParSeconde_Cruise()
+        try: 
+            self.modele = modele 
+            #Selectionne et retourne la ligne de notre dataframe contenant le modèle de notre moteur avec ses informations
+            self.df_moteur = df_global.loc[df_global['Modele'] == modele]
+            #On réinitialise l'index à 1
+            self.df_moteur.reset_index(drop=True, inplace=True)
+            #Masse de CO2 émise durant la phase LTO (g)
+            self.equivalent_carbone_LTO = self.Equivalent_Carbone_LTO()
+            #Masse de CO2 émise par seconde durant la phase de croisière (g/s)
+            self.equivalent_carbone_seconde_cruise = self.Equivalent_CarboneParSeconde_Cruise()
+            
+        except KeyError : 
+            #Met fin au code si le modèle du moteur est mal orthographié ou absent de notre base de donnée 
+            print("Le modèle de moteur saisi n'est pas dans notre base de donnée ou est mal orthographié")
+            exit()
+            
         
    
     #Méthodes 

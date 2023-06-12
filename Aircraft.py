@@ -59,6 +59,7 @@ class Aircraft():
             self.modele_moteur = correspondance_avions_moteurs[modele][0]
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
+            
         except KeyError:
             #Met fin au code si le modèle de l'avion est mal orthographié ou absent de notre base de donnée 
             print("Le modèle d'avion saisi n'est pas dans notre base de donnée ou est mal orthographié")
