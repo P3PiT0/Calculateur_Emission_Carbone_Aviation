@@ -5,12 +5,11 @@ class Moteur():
     Docstring
     '''
     
-    #Attribut
-    
     #Constructeur 
     def __init__(self,modele,df_global):
         '''
         Constructeur pour initialisation du modèle ainsi que des différentes informations du moteur grâce à un df
+        et aux méthodes de calcul de l'émission CO2
         
         :param modele: Modele du moteur 
         :type modele: string
