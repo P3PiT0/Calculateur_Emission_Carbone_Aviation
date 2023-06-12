@@ -1,5 +1,6 @@
 import Engine
 
+#Table de correspondance associant à chaque avion un modèle de moteur ainsi que le nombre de moteur installé sur cet avion
 correspondance_avions_moteurs = {
     'AIRBUS A300 B4600': ('CF6-50A', 2),
     'AIRBUS A318': ('CFM56-5B', 2),
@@ -45,10 +46,13 @@ class Aircraft():
     '''
     Docstring
     '''
-      
     #Constructeur 
     def __init__(self,modele):
-        '''Constructeur 
+        '''Constructeur pour initialisation des informations de notre avion à  partir du modele entrée et 
+        du dictionnaire 
+        
+        :param modele: Modele de l'avion 
+        :type modele: string
         '''
         try: 
             #Modele de moteur associé à notre avion
@@ -56,9 +60,11 @@ class Aircraft():
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
         except KeyError:
+            #Met fin au code si le modèle de l'avion est mal orthographié ou absent de notre base de donnée 
             print("Le modèle d'avion saisi n'est pas dans notre base de donnée ou est mal orthographié")
+            exit()
             
-        
+
         
         
     #Méthodes 

@@ -12,7 +12,7 @@ df=Data_Reader.Emission_Data_Reader()
 moteur = Engine.Moteur('GE90-76B',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS A300 B4600')
+avion = Aircraft.Aircraft('AIRBUS 300 B4600')
 
 #Création d'un voyage entre deux aéroports 
 voyage = Travel.travel('BHX', 'CVT')
