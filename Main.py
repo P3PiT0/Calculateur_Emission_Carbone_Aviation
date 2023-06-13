@@ -19,10 +19,10 @@ df_fleet = Data_Reader.Utilization_Data_Reader()
 moteur = Engine.Moteur('GE90-76B',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS 300 B4600', df)
+avion = Aircraft.Aircraft('BOEING 737 300', df)
 
 #Création d'un voyage entre deux aéroports 
-voyage = Travel.travel('NHT', 'MSE', 'BOEING 777 200')
+voyage = Travel.travel('NHT', 'MSE', 'BOEING 737 300')
 
 compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
 
@@ -36,9 +36,11 @@ print(f"Emission de CO2 lors de la phase de croisière : {moteur.equivalent_carb
 #TEST AVION
 print(f"Le moteur de l'avion choisi est le moteur {avion.moteur.modele}")
 print(f"Il y a {avion.nombre_moteur} moteur sur cet avion")
+print(f"Vitesse : {avion.vitesse_croisiere} m/s")
+print(f"Altitude : {avion.altitude_croisiere} m")
 
 #TEST VOYAGE 
-print(voyage.pollution_trajet())
+print(f"pollution du trajet : {voyage.pollution_trajet()}")
 
 
 

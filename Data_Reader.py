@@ -10,7 +10,7 @@ def Emission_Data_Reader ():
     :return: pandas dataframe
     """
     #Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('EmissionDatabank.csv',delimiter=';',decimal=',',usecols=(2,3,14,17,28,30,41,43,59,78,81),encoding = 'unicode_escape')
+    df = pd.read_csv('Data/EmissionData.csv',delimiter=';',decimal=',',usecols=(2,3,14,17,28,30,41,43,59,78,81),encoding = 'unicode_escape')
 
     #On renomme les colonnes pour faciliter l'utilisation des données
     #LTO = donnée pour les phases de décollage, montée et atterrissage 
@@ -32,32 +32,41 @@ def Emission_Data_Reader ():
     #Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
 
+def Airport_Data_Reader():
+    """
+    
+    """
+
+
+
+
 def Airline_Data_Reader():
-    """Cette fonction lit les donnees concernant le pourcentage d'occupation des avions pour les compagnies
-    aerienne étudié.
+    """Cette fonction lit les données concernant le pourcentage d'occupation des avions pour les compagnies
+    aeriennes étudiées.
 
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('AirCarrier.csv', delimiter=';', decimal=',',
+    df = pd.read_csv('Data\AirCarrierData.csv', delimiter=';', decimal=',',
                      usecols=(1, 7, 9), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
     # Airline = nom des compagnies
     # Loadfactor = pourcentage d'occupation des vols
-    df.columns = ['Airline', 'totalpassenger', 'Loadfactor']
+    # TotalPassenger = nombre total de passagers transportés
+    df.columns = ['Airline', 'TotalPassenger', 'LoadFactor']
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
 
 def Utilization_Data_Reader():
-    """Cette fonction lit les donnees concernant les avions possédé par les compagnies
-    aerienne étudié.
+    """Cette fonction lit les donnees concernant les avions composant la flotte des compagnies
+    aeriennes étudiées.
 
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('FleetUtilization.csv', delimiter=';', decimal=',',
+    df = pd.read_csv('Data\FleetUtilizationData.csv', delimiter=';', decimal=',',
                      usecols=(0, 1, 2, 4), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données

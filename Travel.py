@@ -14,7 +14,7 @@ airports_gb = airports_gb_df.transpose().to_dict()
 
 df=Data_Reader.Emission_Data_Reader()
 
-with open('list_airports.csv', 'w') as f:
+with open('Data/AirportData.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(airports_gb['BHX'].keys())
     for key in airports_gb:
@@ -49,7 +49,7 @@ class travel():
         Emission_CO2_LTO = self.aircraft.moteur.equivalent_carbone_LTO
         Emission_CO2_cruise = self.aircraft.moteur.equivalent_carbone_seconde_cruise
 
-        emissions_trajet = self.distance_croisiere()*1000*Emission_CO2_cruise/(self.aircraft.vitesse_cruise) + Emission_CO2_LTO
+        emissions_trajet = self.distance_croisiere()*1000*Emission_CO2_cruise/(self.aircraft.vitesse_croisiere) + Emission_CO2_LTO
         return emissions_trajet
 
         
