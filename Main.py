@@ -7,24 +7,25 @@ import Travel
 #Formatage du dataframe
 df=Data_Reader.Emission_Data_Reader()
 
-
 #Création de mon objet moteur et affichage de sa consommation
-moteur = Engine.Moteur('GE90-76B',df)
+moteur = Engine.Moteur('CF6-50A',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS 300 B4600')
+avion = Aircraft.Aircraft('AIRBUS A300 B4600',df)
 
 #Création d'un voyage entre deux aéroports 
 voyage = Travel.travel('BHX', 'CVT')
 
 #TEST MOTEUR
-print(f"Information de mon moteur : {moteur.df_moteur}")
+#print(f"Information de mon moteur : {moteur.df_moteur}")
 print(f"Emission de CO2 lors de la phase LTO : {moteur.equivalent_carbone_LTO} g")
 print(f"Emission de CO2 lors de la phase de croisière : {moteur.equivalent_carbone_seconde_cruise} g/s")
 
 #TEST AVION
 print(f"Le moteur de l'avion choisi est le moteur {avion.modele_moteur}")
 print(f"Il y a {avion.nombre_moteur} moteur sur cet avion")
+print(f"L'avion rejette {avion.consommation_moteur_LTO} grammes de CO2 durant la phase LTO")
+print(f"L'avion rejette {avion.consommation_moteur_cruise} grammes par seconde lors de la phase de croisière")
 
 #TEST VOYAGE 
 print(voyage.distance_travel())

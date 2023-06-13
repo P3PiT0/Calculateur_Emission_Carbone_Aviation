@@ -47,7 +47,7 @@ class Aircraft():
     Docstring
     '''
     #Constructeur 
-    def __init__(self,modele):
+    def __init__(self,modele,df_global):
         '''Constructeur pour initialisation des informations de notre avion à  partir du modele entrée et 
         du dictionnaire 
         
@@ -59,11 +59,28 @@ class Aircraft():
             self.modele_moteur = correspondance_avions_moteurs[modele][0]
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
+            #Consommation de l'avion pour la phase LTO
+            self.consommation_moteur_LTO, self.consommation_moteur_cruise = self.Consommation_Avion(df_global)
             
         except KeyError:
             #Met fin au code si le modèle de l'avion est mal orthographié ou absent de notre base de donnée 
             print("Le modèle d'avion saisi n'est pas dans notre base de donnée ou est mal orthographié")
             exit()
+            
+    def Consommation_Avion(self,df_global): 
+        '''
+        Retourne la masse rejeté en équivalent carbone pendant la phase de croisière de l'avion 
+        en gramme par seconde (g/s) ainsi que la masse rejeté durant la phase LTO en gramme (g).
+        Pour se faire, on calcul la consommation des moteurs et on multiplie par le nombre de moteurs.  
+        
+        :return: Masse équivalente de CO2 lors de la phase LTO et taux en g/s lors de la phase de croisière.
+        :rtype: float
+        '''
+        moteur = Engine.Moteur(self.modele_moteur,df_global)
+        taux_rejet_avion_cruise = self.nombre_moteur * moteur.Equivalent_CarboneParSeconde_Cruise()
+        rejet_avion_LTO = self.nombre_moteur * moteur.Equivalent_Carbone_LTO()
+        return rejet_avion_LTO, taux_rejet_avion_cruise 
+    
             
 
         
