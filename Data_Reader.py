@@ -31,3 +31,43 @@ def Emission_Data_Reader ():
     
     #Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
+
+def Airline_Data_Reader():
+    """Cette fonction lit les donnees concernant le pourcentage d'occupation des avions pour les compagnies
+    aerienne étudié.
+
+    :return: pandas dataframe
+    """
+    # Lecture du fichier CSV, selection des colonnes utiles
+    df = pd.read_csv('AirCarrier.csv', delimiter=';', decimal=',',
+                     usecols=(1, 7, 9), encoding='unicode_escape')
+
+    # On renomme les colonnes pour faciliter l'utilisation des données
+    # Airline = nom des compagnies
+    # Loadfactor = pourcentage d'occupation des vols
+    df.columns = ['Airline', 'totalpassenger', 'Loadfactor']
+
+    # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
+    return df
+
+def Utilization_Data_Reader():
+    """Cette fonction lit les donnees concernant les avions possédé par les compagnies
+    aerienne étudié.
+
+    :return: pandas dataframe
+    """
+    # Lecture du fichier CSV, selection des colonnes utiles
+    df = pd.read_csv('FleetUtilization.csv', delimiter=';', decimal=',',
+                     usecols=(0, 1, 2, 4), encoding='unicode_escape')
+
+    # On renomme les colonnes pour faciliter l'utilisation des données
+    # Airline = nom des compagnies
+    # Loadfactor = pourcentage d'occupation des vols
+    df.columns = ['Airline', 'Name', 'Type', 'TotalHours']
+    # print(f"Noms des colonne : {df.columns}, shape : {df.shape}")
+
+    # Conversion des colonnes numériques en float
+    #df[['Loadfactor']] = df[['Loadfactor']].astype(float)
+
+    # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
+    return df
