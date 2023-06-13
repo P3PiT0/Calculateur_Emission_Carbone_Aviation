@@ -15,10 +15,10 @@ df=Data_Reader.Emission_Data_Reader()
 moteur = Engine.Moteur('GE90-76B',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS 300 B4600')
+avion = Aircraft.Aircraft('AIRBUS A300 B4600', df)
 
 #Création d'un voyage entre deux aéroports 
-voyage = Travel.travel('BHX', 'CVT')
+voyage = Travel.travel('NHT', 'MSE', 'BOEING 777 200')
 
 #TEST MOTEUR
 print(f"Information de mon moteur : {moteur.df_moteur}")
@@ -26,11 +26,11 @@ print(f"Emission de CO2 lors de la phase LTO : {moteur.equivalent_carbone_LTO} g
 print(f"Emission de CO2 lors de la phase de croisière : {moteur.equivalent_carbone_seconde_cruise} g/s")
 
 #TEST AVION
-print(f"Le moteur de l'avion choisi est le moteur {avion.modele_moteur}")
+print(f"Le moteur de l'avion choisi est le moteur {avion.moteur.modele}")
 print(f"Il y a {avion.nombre_moteur} moteur sur cet avion")
 
 #TEST VOYAGE 
-print(voyage.distance_travel())
+print(voyage.pollution_trajet())
 
 
 

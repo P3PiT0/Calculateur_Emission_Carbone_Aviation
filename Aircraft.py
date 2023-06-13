@@ -56,9 +56,11 @@ class Aircraft():
         '''
         try: 
             #Modele de moteur associé à notre avion
-            self.modele_moteur = correspondance_avions_moteurs[modele][0]
+            self.moteur = moteur = Engine.Moteur(correspondance_avions_moteurs[modele][0],df_global)
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
+            #Vitesse de croisiere de l'avion
+            self.vitesse_cruise = 300
             #Consommation de l'avion pour la phase LTO
             self.consommation_moteur_LTO, self.consommation_moteur_cruise = self.Consommation_Avion(df_global)
             
@@ -76,7 +78,7 @@ class Aircraft():
         :return: Masse équivalente de CO2 lors de la phase LTO et taux en g/s lors de la phase de croisière.
         :rtype: float
         '''
-        moteur = Engine.Moteur(self.modele_moteur,df_global)
+        moteur = self.moteur
         taux_rejet_avion_cruise = self.nombre_moteur * moteur.Equivalent_CarboneParSeconde_Cruise()
         rejet_avion_LTO = self.nombre_moteur * moteur.Equivalent_Carbone_LTO()
         return rejet_avion_LTO, taux_rejet_avion_cruise 
