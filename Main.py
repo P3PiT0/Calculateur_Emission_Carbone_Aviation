@@ -19,7 +19,7 @@ df_fleet = Data_Reader.Utilization_Data_Reader()
 moteur = Engine.Moteur('GE90-76B',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS 300 B4600', df)
+avion = Aircraft.Aircraft('AIRBUS A300 B4600', df)
 
 #Création d'un voyage entre deux aéroports 
 voyage = Travel.travel('NHT', 'MSE', 'BOEING 777 200')
