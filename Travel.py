@@ -9,10 +9,9 @@ airports_df = airports_df.transpose()
 airports_gb_df = airports_df[airports_df.subd == 'England'].reset_index(drop=True)
 airports_gb_df.index = airports_gb_df['iata']
 airports_gb = airports_gb_df.transpose().to_dict()
-print(airports_gb['BHX'])
 
 
-with open('airports.csv', 'w') as f:
+with open('list_airports.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(airports_gb['BHX'].keys())
     for key in airports_gb:
