@@ -4,6 +4,8 @@ import Engine
 import Aircraft
 import Airline 
 import Travel
+import Lecteuryamel
+import sys
 
 #Formatage du dataframe
 df=Data_Reader.Emission_Data_Reader()
@@ -30,9 +32,22 @@ print(f"Il y a {avion.nombre_moteur} moteur sur cet avion")
 #TEST VOYAGE 
 print(voyage.distance_travel())
 
+
+
 def interface_utilisateur():
-    print('BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
+    print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
     print("\n Il vous permet de comparer l'impact écologique global par passager des différentes compagnies anglaises")
     print("\n Si vous prévoyez un voyage en avion (en Angleterre), vous pouvez également comparer l'impact écologique de différents vols")
-    print("\n Veuillez remplir le fichier  'Donnees.yaml' afin de communiquer les entrées au programme puis appuyer sur ENTRER")
+    print(input("\n Veuillez remplir le fichier  'Donnees.yaml' afin de communiquer les entrées au programme puis appuyer sur ENTRER"))
 
+    Entrees_yaml = Lecteuryamel.lecteuryamel()
+    Donnees_dict = Entrees_yaml.print_content()
+
+    if input("\n Validez-vous ces données ? (OUI/NON)") == 'OUI':
+        return Donnees_dict
+    else:
+        print("\n Veuillez remplir le fichier 'Donnees.yaml' comme vous le souhaiter et réessayer")
+        sys.exit()
+
+Donnees_dict = interface_utilisateur()
+print(Donnees_dict)
