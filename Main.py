@@ -8,17 +8,25 @@ import Lecteuryamel
 import sys
 
 #Formatage du dataframe
-df=Data_Reader.Emission_Data_Reader()
+df = Data_Reader.Emission_Data_Reader()
+
+df_airline = Data_Reader.Airline_Data_Reader()
+
+df_fleet = Data_Reader.Utilization_Data_Reader()
 
 
 #Création de mon objet moteur et affichage de sa consommation
 moteur = Engine.Moteur('GE90-76B',df)
 
 #Création de mon objet moteur 
-avion = Aircraft.Aircraft('AIRBUS A300 B4600', df)
+avion = Aircraft.Aircraft('AIRBUS 300 B4600', df)
 
 #Création d'un voyage entre deux aéroports 
 voyage = Travel.travel('NHT', 'MSE', 'BOEING 777 200')
+
+compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
+
+print(f"la compagnie:  {compagnie.df_airline}")
 
 #TEST MOTEUR
 print(f"Information de mon moteur : {moteur.df_moteur}")
