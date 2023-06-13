@@ -49,7 +49,7 @@ class travel():
         Emission_CO2_LTO = self.aircraft.moteur.equivalent_carbone_LTO
         Emission_CO2_cruise = self.aircraft.moteur.equivalent_carbone_seconde_cruise
 
-        emissions_trajet = self.distance_croisiere()*1000*Emission_CO2_cruise/(self.aircraft.vitesse_cruise) + Emission_CO2_LTO
+        emissions_trajet = self.distance_croisiere()*1000*Emission_CO2_cruise/(self.aircraft.vitesse_croisiere) + Emission_CO2_LTO
         return emissions_trajet
 
         
