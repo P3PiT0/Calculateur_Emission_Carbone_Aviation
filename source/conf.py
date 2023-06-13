@@ -16,9 +16,7 @@ author = 'Lucas Chamaz lucas.chamaz.1@ens.etsmtl.ca ; Alexandre Panhaleux alenxa
 import os
 import sys
 sys.path.insert(0, os.path.abspath("../"))
-sys.path.insert(0, os.path.abspath("../other_code"))
-
-extensions = [« sphinx.ext.autodoc »]
+#sys.path.insert(0, os.path.abspath("../other_code"))
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -26,6 +24,8 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+
+extensions = ["sphinx.ext.autodoc"]
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
