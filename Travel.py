@@ -14,7 +14,7 @@ airports_gb = airports_gb_df.transpose().to_dict()
 
 df=Data_Reader.Emission_Data_Reader()
 
-with open('list_airports.csv', 'w') as f:
+with open('Data/AirportData.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(airports_gb['BHX'].keys())
     for key in airports_gb:
