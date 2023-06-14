@@ -13,13 +13,13 @@ comparaison_compagnies: false #true si vous voulez comparer les compagnies angla
 comparaison_VOLS: true #true si vous voulez comparer des vols
 
 #VOL 1
-arrive_airport1: 'BRS'
-depart_airport1: 'MSE'
+arrive_airport1: 'BMB'
+depart_airport1: 'ITM'
 avion1: 'BOEING 747 400'
 
 #VOL 2
-arrive_airport2: 'BRS'
-depart_airport2: 'MSE'
+arrive_airport2: 'BMB'
+depart_airport2: 'ITM'
 avion2: 'AIRBUS A330 200'
 
 

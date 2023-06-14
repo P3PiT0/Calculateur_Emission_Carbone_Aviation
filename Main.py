@@ -40,8 +40,8 @@ if Donnees_dict['comparaison_compagnies']:
 elif Donnees_dict['comparaison_VOLS']:
     voyage1 = Travel.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
     voyage2 = Travel.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
-    print(f"pollution du trajet1 : {voyage1.pollution_trajet()/1000000} tonnes de CO2")
-    print(f"pollution du trajet2 : {voyage2.pollution_trajet()/1000000} tonnes de CO2")
+    print(f"pollution du trajet1 : {voyage1.pollution_trajet()} tonnes de CO2")
+    print(f"pollution du trajet2 : {voyage2.pollution_trajet()} tonnes de CO2")
 else:
     print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
 

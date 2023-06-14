@@ -35,6 +35,7 @@ def Emission_Data_Reader ():
     #Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
 
+'''
 def Airport_Data_Reader():
     """Cette fonction lit les données du module airportsdata et récupère la latitude et la longitude et 
     le code iata des aeroports anglais. Par la suite on va renvoyer ce dictionnaire contenant la latitude,
@@ -53,7 +54,7 @@ def Airport_Data_Reader():
     airports_gb = airports_gb_df.transpose().to_dict()
             
     return airports_gb
-
+'''
 
 
 
