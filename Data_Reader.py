@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import airportsdata
+import csv
+
 
 def Emission_Data_Reader (): 
     """Cette fonction lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion 
@@ -33,9 +36,23 @@ def Emission_Data_Reader ():
     return df
 
 def Airport_Data_Reader():
-    """
+    """Cette fonction lit les données du module airportsdata et récupère la latitude et la longitude et 
+    le code iata des aeroports anglais. Par la suite on va renvoyer ce dictionnaire contenant la latitude,
+    la longitude, le code iata et d'autres informations pour chaque aéroports anglais. 
     
+    :return: dictionnaire
     """
+    #Chargement des informations
+    airports = airportsdata.load('IATA')
+    airports_df = pd.DataFrame(airports)
+    airports_df = airports_df.transpose()
+    #Sélection des aeroports britanniques
+    airports_gb_df = airports_df[airports_df.subd == 'England'].reset_index(drop=True)
+    #Création du dictionnaire, l'index de notre dictionnaire correspond à l'indice iata
+    airports_gb_df.index = airports_gb_df['iata']
+    airports_gb = airports_gb_df.transpose().to_dict()
+            
+    return airports_gb
 
 
 
