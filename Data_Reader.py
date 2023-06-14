@@ -82,8 +82,7 @@ def Utilization_Data_Reader():
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('Data\FleetUtilizationData.csv', delimiter=';', decimal=',',
-                     usecols=(0, 1, 2, 4), encoding='unicode_escape')
+    df = pd.read_csv('Data\FleetUtilizationData.csv', delimiter=';', decimal=',',usecols=(0, 1, 2, 4), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
     # Airline = nom des compagnies
@@ -93,6 +92,7 @@ def Utilization_Data_Reader():
 
     # Conversion des colonnes numériques en float
     df[['TotalHours','Days']] = df[['TotalHours','Days']].astype(float)
+
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
