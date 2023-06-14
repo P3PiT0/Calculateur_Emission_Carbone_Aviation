@@ -47,4 +47,7 @@ class Airline():
         self.planes[1] = self.df_fleet.loc[:, 'Type']
         self.totalhours = self.df_fleet['TotalHours'].sum()
         self.planes[2] = (self.df_fleet.loc[:, 'TotalHours']/self.totalhours)
+        print(len(self.planes[2]))
+        #Déclaration avions
+
 

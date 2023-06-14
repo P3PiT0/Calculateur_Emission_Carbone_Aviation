@@ -28,7 +28,6 @@ compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
 
 #t compagnie
 
-print('ok')
 print(f"Compagnie : {compagnie.nom}")
 print(f"LoadFactor : {compagnie.loadfactor}")
 print(f"Planes : {compagnie.planes}")
