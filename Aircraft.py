@@ -68,7 +68,7 @@ class Aircraft():
             self.vitesse_croisiere = self.Vitesse_croisière(modele,correspondance_avions_moteurs[modele][3])
             #Altitude de croisière en m (initialement en ft)
             self.altitude_croisiere = correspondance_avions_moteurs[modele][2]/3.28 
-            #Consommation de l'avion pour la phase LTO
+            #Consommation de l'avion pour la phase LTO (g) et Croisière (g/s) 
             self.consommation_moteur_LTO, self.consommation_moteur_cruise = self.Consommation_Avion(df_global)
  
         except KeyError:

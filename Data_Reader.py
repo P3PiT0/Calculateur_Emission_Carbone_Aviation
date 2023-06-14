@@ -3,7 +3,6 @@ import numpy as np
 import airportsdata
 import csv
 
-
 def Emission_Data_Reader (): 
     """Cette fonction lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion 
     qui contient des informations sur les émissions de gaz d'échappement des moteurs d'avion. Par la suite
@@ -64,7 +63,7 @@ def Airline_Data_Reader():
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('Data/AirCarrierData.csv', delimiter=';', decimal=',',
+    df = pd.read_csv('Data\AirCarrierData.csv', delimiter=';', decimal=',',
                      usecols=(1, 7, 9), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
@@ -83,17 +82,17 @@ def Utilization_Data_Reader():
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('Data/FleetUtilizationData.csv', delimiter=';', decimal=',',
-                     usecols=(0, 1, 2, 3, 4), encoding='unicode_escape')
+    df = pd.read_csv('Data\FleetUtilizationData.csv', delimiter=';', decimal=',',
+                     usecols=(0, 1, 2, 4), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
     # Airline = nom des compagnies
     # Loadfactor = pourcentage d'occupation des vols
-    df.columns = ['Airline', 'Name', 'Type', 'Days', 'TotalHours']
+    df.columns = ['Airline', 'Name', 'Type', 'TotalHours']
     # print(f"Noms des colonne : {df.columns}, shape : {df.shape}")
 
     # Conversion des colonnes numériques en float
-    df[['TotalHours']] = df[['TotalHours']].astype(float)
+    df[['TotalHours','Days']] = df[['TotalHours','Days']].astype(float)
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
