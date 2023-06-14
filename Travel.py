@@ -37,7 +37,7 @@ class travel():
         lat2 = airports_gb[self.arrive_airport]['lat']*mt.pi/180
         lon2 = airports_gb[self.arrive_airport]['lon']*mt.pi/180
 
-        distance = mt.acos((mt.sin(lat1)*mt.sin(lat2)) + mt.cos(lat1)*mt.cos(lat2)*mt.cos(lon1-lon2))*6371 - 0.914/(mt.tan(5*mt.pi/180)) - 0.914/(mt.tan(3*mt.pi/180))
+        distance = mt.acos((mt.sin(lat1)*mt.sin(lat2)) + mt.cos(lat1)*mt.cos(lat2)*mt.cos(lon1-lon2))*(6371+self.aircraft.altitude_croisiere/1000) - 0.914/(mt.tan(5*mt.pi/180)) - 0.914/(mt.tan(3*mt.pi/180))
         if distance < 0:
             distance = 0
         return(distance)

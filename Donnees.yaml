@@ -5,7 +5,7 @@
 #ATTENTION : Pour le choix des données, veillez vous référer aux indications en bas de ce document
 
 #1 COMPARATION DE COMPAGNIES AERIENNES
-comparation_compagnies: true #true si vous voulez comparer les compagnies anglaises en termes d'émission de CO2
+comparaison_compagnies: false #true si vous voulez comparer les compagnies anglaises en termes d'émission de CO2
 
 
 
@@ -13,13 +13,13 @@ comparation_compagnies: true #true si vous voulez comparer les compagnies anglai
 comparaison_VOLS: true #true si vous voulez comparer des vols
 
 #VOL 1
-arrive_airport1: 'BHX'
-depart_airport1: 'CVT'
+arrive_airport1: 'BRS'
+depart_airport1: 'MSE'
 avion1: 'BOEING 747 400'
 
 #VOL 2
-arrive_airport2: 'BHX'
-depart_airport2: 'CVT'
+arrive_airport2: 'BRS'
+depart_airport2: 'MSE'
 avion2: 'AIRBUS A330 200'
 
 
