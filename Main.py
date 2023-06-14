@@ -1,4 +1,5 @@
 
+
 import Data_Reader
 import Engine
 import Aircraft
@@ -13,42 +14,6 @@ df = Data_Reader.Emission_Data_Reader()
 df_airline = Data_Reader.Airline_Data_Reader()
 
 df_fleet = Data_Reader.Utilization_Data_Reader()
-
-
-#Création de mon objet moteur et affichage de sa consommation
-moteur = Engine.Moteur('GE90-76B',df)
-
-#Création de mon objet moteur 
-avion = Aircraft.Aircraft('BOEING 737 300', df)
-
-#Création d'un voyage entre deux aéroports
-voyage = Travel.travel('NHT', 'MSE', 'BOEING 737 300')
-
-compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
-
-#t compagnie
-
-print('ok')
-print(f"Compagnie : {compagnie.nom}")
-print(f"LoadFactor : {compagnie.loadfactor}")
-print(f"Planes : {compagnie.planes}")
-print(f"TotalHours : {compagnie.totalhours}")
-print(f"Passenger : {compagnie.totalpassenger}")
-#TEST MOTEUR
-print(f"Information de mon moteur : {moteur.df_moteur}")
-print(f"Emission de CO2 lors de la phase LTO : {moteur.equivalent_carbone_LTO} g")
-print(f"Emission de CO2 lors de la phase de croisière : {moteur.equivalent_carbone_seconde_cruise} g/s")
-
-#TEST AVION
-print(f"Le moteur de l'avion choisi est le moteur {avion.moteur.modele}")
-print(f"Il y a {avion.nombre_moteur} moteur sur cet avion")
-print(f"Vitesse : {avion.vitesse_croisiere} m/s")
-print(f"Altitude : {avion.altitude_croisiere} m")
-
-#TEST VOYAGE 
-print(f"pollution du trajet : {voyage.pollution_trajet()}")
-
-
 
 def interface_utilisateur():
     print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
@@ -65,5 +30,19 @@ def interface_utilisateur():
         print("\n Veuillez remplir le fichier 'Donnees.yaml' comme vous le souhaiter et réessayer")
         sys.exit()
 
+
+
 Donnees_dict = interface_utilisateur()
-print(Donnees_dict)
+
+if Donnees_dict['comparaison_compagnies']:
+    #comsignes de comparaison de compagnies
+    a=2
+elif Donnees_dict['comparaison_VOLS']:
+    voyage1 = Travel.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
+    voyage2 = Travel.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
+    print(f"pollution du trajet1 : {voyage1.pollution_trajet()/1000000} tonnes de CO2")
+    print(f"pollution du trajet2 : {voyage2.pollution_trajet()/1000000} tonnes de CO2")
+else:
+    print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
+
+
