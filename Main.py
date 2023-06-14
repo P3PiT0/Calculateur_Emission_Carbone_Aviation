@@ -29,11 +29,12 @@ compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
 #t compagnie
 
 print('ok')
-print(f"Compagnie : {compagnie.nom}")
-print(f"LoadFactor : {compagnie.loadfactor}")
-print(f"Planes : {compagnie.planes}")
-print(f"TotalHours : {compagnie.totalhours}")
-print(f"Passenger : {compagnie.totalpassenger}")
+print(f"Compagnie : {compagnie.compagnie}")
+print(f"LoadFactor : {compagnie.load_factor}")
+print(f"Planes : {compagnie.flotte}")
+print(f"TotalHours : {compagnie.total_hours}")
+print(f"Passenger : {compagnie.total_passenger}")
+
 #TEST MOTEUR
 print(f"Information de mon moteur : {moteur.df_moteur}")
 print(f"Emission de CO2 lors de la phase LTO : {moteur.equivalent_carbone_LTO} g")
