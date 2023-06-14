@@ -1,4 +1,5 @@
 import Aircraft
+import matplotlib.pyplot as plt
 class Airline(): 
     '''
     Docstring
@@ -16,52 +17,73 @@ class Airline():
         :param df_airline: Dataframe contenant les informations sur les compagnies
         :type constructeur: Pandas Dataframe
         '''
-        '''try:'''
-        self.compagnie = compagnie
-        # Selectionne et retourne la ligne de notre dataframe contenant les informations sur notre compagnie
-        # Réinitialisation de l'index à 1
-        self.df_airline = df_airline.loc[df_airline['Airline'] == compagnie]
-        self.df_airline.reset_index(drop=True, inplace=True)
-        # Selectionne et retourne les informations sur la flotte de la compagnie
-        # Réinitialisation de l'index à 1
-        self.df_fleet = df_fleet.loc[df_fleet['Airline'] == compagnie]
-        self.df_fleet.reset_index(drop=True, inplace=True)
-        # Pourcentage d'occupation sur l'année 2010
-        self.load_factor = self.df_airline.loc[0,'LoadFactor']
-        # Nombre total de passager sur l'année 2010
-        self.total_passenger = self.df_airline.loc[0,'TotalPassenger']
+        try:
+            self.compagnie = compagnie
+            # Selectionne et retourne la ligne de notre dataframe contenant les informations sur notre compagnie
+            # Réinitialisation de l'index à 1
+            self.df_airline = df_airline.loc[df_airline['Airline'] == compagnie]
+            self.df_airline.reset_index(drop=True, inplace=True)
+            # Selectionne et retourne les informations sur la flotte de la compagnie
+            # Réinitialisation de l'index à 1
+            self.df_fleet = df_fleet.loc[df_fleet['Airline'] == compagnie]
+            self.df_fleet.reset_index(drop=True, inplace=True)
+            # Pourcentage d'occupation sur l'année 2010, on supprime le symbole %
+            self.load_factor = float(self.df_airline.loc[0,'LoadFactor'][:-1])
+            # Nombre total de passager sur l'année 2010
+            self.total_passenger = self.df_airline.loc[0,'TotalPassenger']
 
-        # Nombre d'heure de vol de la flotte sur l'année 
-        self.total_hours = self.df_fleet['TotalHours'].sum()
-        # Flotte de la compagnie [Avion,Passenger ou Freighter, Pourcentage d'utilisation sur le temps total]
-        self.flotte = [self.df_fleet.loc[:, 'Name'],self.df_fleet.loc[:, 'Type'],(self.df_fleet.loc[:, 'TotalHours']/self.total_hours),self.df_fleet.loc[:,'Days']] 
-        # CO2 total émis par la compagnie 
-        self.CO2_compagnie = self.CO2_total_compagnie(df)
-        self.CO2_par_passager_reel, self.CO2_par_passager_optimal = self.CO2_total_par_passager()
+            # Nombre d'heure de vol de la flotte sur l'année 
+            self.total_hours = self.df_fleet['TotalHours'].sum()
+            # Flotte de la compagnie [Avion,Passenger ou Freighter, Pourcentage d'utilisation sur le temps total]
+            self.flotte = [self.df_fleet.loc[:, 'Name'],self.df_fleet.loc[:, 'Type'],(self.df_fleet.loc[:, 'TotalHours']/self.total_hours),self.df_fleet.loc[:,'Days']] 
+            # CO2 total émis par la compagnie (vol avec passager, vol cargo et cumulé)
+            self.CO2_compagnie_passager, self.CO2_compagnie_cargo = self.CO2_total_compagnie(df)
+            self.CO2_compagnie_total = self.CO2_compagnie_passager+self.CO2_compagnie_cargo
+            # CO2 émis par passager (réel = en prenant en compte le taux d'occupation des avions, optimal = remplissage 100%)
+            self.CO2_par_passager_reel, self.CO2_par_passager_optimal = self.CO2_total_par_passager()
 
-        '''except KeyError:
+        except KeyError:
             # Met fin au code si le nom saisie n'est pas dans la base de donnée
             print("Le nom de la compagnie saisi n'est pas dans notre base de donnée ou est mal orthographié")
-            exit()'''
+            exit()
             
     #Méthodes
     def CO2_total_compagnie(self,df): 
-        CO2_total = 0 
+        CO2_total_cargo = 0 
+        CO2_total_passager = 0 
         for i in range(0,len(self.flotte[0])) :
             modele_avion = Aircraft.Aircraft(self.flotte[0][i], df)
-            #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
-            CO2_total += modele_avion.consommation_moteur_LTO()*self.flotte[3][i]
-            CO2_total += modele_avion.consommation_moteur_cruise()*3600*self.flotte[3][i]
-        
-        return CO2_total 
+            if self.flotte[1][i] == 'Passenger': 
+                #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
+                CO2_total_passager += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
+                CO2_total_passager += modele_avion.consommation_moteur_cruise*3600*self.flotte[3][i]
+            elif self.flotte[1][i] == 'Freighter':
+                #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
+                CO2_total_cargo += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
+                CO2_total_cargo += modele_avion.consommation_moteur_cruise*3600*self.flotte[3][i]
+            
+        return CO2_total_passager, CO2_total_cargo
     
     def CO2_total_par_passager(self) : 
         
-        CO2_par_passager_optimal = self.CO2_compagnie*self.load_factor / self.total_passenger
-        CO2_par_passager_reel = self.CO2_compagnie  / self.total_passenger
-        
+        CO2_par_passager_optimal = self.CO2_compagnie_passager*((self.load_factor)/100) / int(self.total_passenger)
+        CO2_par_passager_reel = self.CO2_compagnie_passager  / self.total_passenger
         return CO2_par_passager_reel, CO2_par_passager_optimal
+    
+    # def fonction affichage répartition emission entre cargo et passagers
             
             
-   
-
+def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
+    pollution = [] 
+    for nom_compagnie in df_airline['Airline']:
+        compagnie =Airline(nom_compagnie, df_airline, df_fleet, df)
+        pollution.append(compagnie.CO2_par_passager_reel)
+    
+    plt.barh(df_airline['Airline'], pollution)
+    plt.xlabel('Compagnies Aériennes')
+    plt.ylabel('CO2 émis par passager')
+    plt.show()
+    
+    
+        
+    

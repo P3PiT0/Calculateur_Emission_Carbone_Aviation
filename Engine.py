@@ -29,6 +29,7 @@ class Moteur():
             
         except KeyError : 
             #Met fin au code si le modèle du moteur est mal orthographié ou absent de notre base de donnée 
+            print(modele)
             print("Le modèle de moteur saisi n'est pas dans notre base de donnée ou est mal orthographié")
             exit()
             

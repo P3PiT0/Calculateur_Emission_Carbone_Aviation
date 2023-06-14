@@ -6,10 +6,10 @@ correspondance_avions_moteurs = {
     #'AVION':('MOTEUR', Nombre de moteur, Altitude de croisière(ft), Mach de croisière)
     #TRAITER LE CAS DES HELICES
     'AIRBUS A300 B4600': ('CF6-50A', 2, 35000, 0.82),
-    'AIRBUS A318': ('CFM56-5B', 2, 41000, 0.82),
-    'AIRBUS A319': ('CFM56-5B', 2, 41000, 0.82),
-    'AIRBUS A320': ('CFM56-5B', 2, 41000, 0.82),
-    'AIRBUS A321': ('CFM56-5B', 2, 41000, 0.82),
+    'AIRBUS A318': ('CFM56-5B1', 2, 41000, 0.82),
+    'AIRBUS A319': ('CFM56-5B1', 2, 41000, 0.82),
+    'AIRBUS A320': ('CFM56-5B1', 2, 41000, 0.82),
+    'AIRBUS A321': ('CFM56-5B1', 2, 41000, 0.82),
     'AIRBUS A330': ('Trent 772', 2, 41000, 0.82),
     'AIRBUS A330 200': ('Trent 772', 2, 41000, 0.86),
     'AIRBUS A330 300': ('PW4168', 2, 41000, 0.84),
