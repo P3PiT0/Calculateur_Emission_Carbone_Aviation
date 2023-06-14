@@ -15,7 +15,6 @@ df_airline = Data_Reader.Airline_Data_Reader()
 
 df_fleet = Data_Reader.Utilization_Data_Reader()
 
-
 def interface_utilisateur():
     print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
     print("\n Il vous permet de comparer l'impact écologique global par passager des différentes compagnies anglaises")
