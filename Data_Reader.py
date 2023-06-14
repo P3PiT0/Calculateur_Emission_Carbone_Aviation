@@ -76,7 +76,7 @@ def Utilization_Data_Reader():
     # print(f"Noms des colonne : {df.columns}, shape : {df.shape}")
 
     # Conversion des colonnes numériques en float
-    #df[['Loadfactor']] = df[['Loadfactor']].astype(float)
+    df[['TotalHours']] = df[['TotalHours']].astype(float)
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df

@@ -21,13 +21,19 @@ moteur = Engine.Moteur('GE90-76B',df)
 #Création de mon objet moteur 
 avion = Aircraft.Aircraft('BOEING 737 300', df)
 
-#Création d'un voyage entre deux aéroports 
+#Création d'un voyage entre deux aéroports
 voyage = Travel.travel('NHT', 'MSE', 'BOEING 737 300')
 
 compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet)
 
-print(f"la compagnie:  {compagnie.df_airline}")
+#t compagnie
 
+print('ok')
+print(f"Compagnie : {compagnie.nom}")
+print(f"LoadFactor : {compagnie.loadfactor}")
+print(f"Planes : {compagnie.planes}")
+print(f"TotalHours : {compagnie.totalhours}")
+print(f"Passenger : {compagnie.totalpassenger}")
 #TEST MOTEUR
 print(f"Information de mon moteur : {moteur.df_moteur}")
 print(f"Emission de CO2 lors de la phase LTO : {moteur.equivalent_carbone_LTO} g")
