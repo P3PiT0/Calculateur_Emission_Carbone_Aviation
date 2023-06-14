@@ -5,20 +5,9 @@ import csv
 import Aircraft
 import Data_Reader
 
-airports = airportsdata.load('IATA')
-airports_df = pd.DataFrame(airports)
-airports_df = airports_df.transpose()
-airports_gb_df = airports_df[airports_df.subd == 'England'].reset_index(drop=True)
-airports_gb_df.index = airports_gb_df['iata']
-airports_gb = airports_gb_df.transpose().to_dict()
 
+airports_gb = Data_Reader.Airport_Data_Reader()
 df=Data_Reader.Emission_Data_Reader()
-
-with open('Data/AirportData.csv', 'w') as f:
-    writer = csv.writer(f)
-    writer.writerow(airports_gb['BHX'].keys())
-    for key in airports_gb:
-        writer.writerow((airports_gb[key].values()))
 
 class travel():
     '''
