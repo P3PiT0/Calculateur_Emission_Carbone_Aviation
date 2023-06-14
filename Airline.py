@@ -8,7 +8,7 @@ class Airline():
     #Constructeur 
     def __init__(self, nom, df_airline, df_fleet):
         '''
-        Constructeur pour initialisation des compagnies aerienne
+        Constructeur pour initialisation des compagnies aériennes
 
         :param nom: Nom de la compagnie
         :type nom: string
