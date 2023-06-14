@@ -36,26 +36,21 @@ def Emission_Data_Reader ():
     return df
 
 def Airport_Data_Reader():
-    """Cette fonction lit les données du module airportsdata et récupère la latitude et la longitude 
-    des aeroports anglais. Par la suite on va créer un CSV nommé AirportData contenant les informations.
-    La fonction renvoi un dictionnaire contenant la latitude, la longitude, le code iata et d'autres informations
-    pour chaque aéroports anglais. 
+    """Cette fonction lit les données du module airportsdata et récupère la latitude et la longitude et 
+    le code iata des aeroports anglais. Par la suite on va renvoyer ce dictionnaire contenant la latitude,
+    la longitude, le code iata et d'autres informations pour chaque aéroports anglais. 
     
     :return: dictionnaire
     """
-    
+    #Chargement des informations
     airports = airportsdata.load('IATA')
     airports_df = pd.DataFrame(airports)
     airports_df = airports_df.transpose()
+    #Sélection des aeroports britanniques
     airports_gb_df = airports_df[airports_df.subd == 'England'].reset_index(drop=True)
+    #Création du dictionnaire, l'index de notre dictionnaire correspond à l'indice iata
     airports_gb_df.index = airports_gb_df['iata']
     airports_gb = airports_gb_df.transpose().to_dict()
-
-    with open('Data/AirportData.csv', 'w') as f:
-        writer = csv.writer(f)
-        writer.writerow(airports_gb['BHX'].keys())
-        for key in airports_gb:
-            writer.writerow((airports_gb[key].values()))
             
     return airports_gb
 

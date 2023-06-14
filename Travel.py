@@ -5,7 +5,7 @@ import csv
 import Aircraft
 import Data_Reader
 
-
+#Importation des données 
 airports_gb = Data_Reader.Airport_Data_Reader()
 df=Data_Reader.Emission_Data_Reader()
 
