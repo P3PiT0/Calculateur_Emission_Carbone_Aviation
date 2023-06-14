@@ -15,13 +15,8 @@ correspondance_avions_moteurs = {
     'AIRBUS A330 300': ('PW4168', 2, 41000, 0.84, 440),
     'AIRBUS A340 300': ('CFM56-5C4', 4, 39000, 0.84, 440),
     'AIRBUS A340 600': ('Trent 556-61', 4, 39000, 0.84, 475),
-    'ATR ATR72': ('Hélice', 2, 25000, 0.52, 78),
-    'BAE ATP': ('Hélice', 2, 25000, 0.72, 78),
     'BAE AVRO 146RJ 200': ('ALF 502R-5', 4, 35000, 0.75, 100),
     'BAE AVRO 146RJ 300': ('ALF 502R-5', 4, 35000, 0.75, 112),
-    'BAE JETSTREAM31 3100': ('Hélice', 2, 25000, 0.37, 19),
-    'BAE JETSTREAM41 4100': ('Hélice', 2, 25000, 0.37, 30),
-    'BEECH 300': ('Hélice', 2, 25000, 0.37, 8),
     'BOEING 737 300': ('CFM56-3-B1', 2, 41000, 0.82, 149),
     'BOEING 737 400': ('CFM56-3C-1', 2, 41000, 0.82, 188),
     'BOEING 737 500': ('CFM56-3-B1', 2, 41000, 0.82, 140),
@@ -37,15 +32,17 @@ correspondance_avions_moteurs = {
     'BOEING 777 300': ('PW4098', 2, 39000, 0.86, 550),
     'BOMBARDIER BD1001A10': ('HTF7350 (AS907-2-1A)', 2, 45000, 0.82, 10),
     'BOMBARDIER BD7001A10': ('BR700-710D5-21', 2, 42000, 0.85, 13),
-    'CANADAIR CL6002B16': ('CF34-3A', 41000, 0.82, 12),
+    'CANADAIR CL6002B16': ('CF34-3A', 2, 41000, 0.82, 12),
     'DASSAULT FALCON 2000': ('PW308C', 2, 48000, 0.84, 10),
     'DASSAULT FALCON 900': ('TFE731-3', 2, 51000, 0.85, 14),
     'DASSAULT FALCON7X': ('PW307A', 3, 42000, 0.87, 16),
-    'DE HAVILLAND CANADA DHC8 300': ('Hélice', 2, 25000, 0.42, 56),
-    'DE HAVILLAND CANADA DHC8 400': ('Hélice', 2, 27000, 0.57, 90)}
+    'EMBRAER EMB145': ('AE3007A', 2, 37000, 0.77, 50),
+    'EMBRAER ERJ195': ('CF34-10E2A1', 2, 41000, 0.78, 100),
+    'GRUMMAN G1159': ('SPEY Mk511', 2, 30000, 0.85, 14),
+    'GULFSTREAM G200': ('PW306A', 2, 45000, 0.8, 10),
+    'EMBRAER EMB135': ('AE3007A', 2, 37000, 0.77, 37)}
 
-
-class Aircraft(): 
+class Aircraft():
     '''
     Docstring
     '''
