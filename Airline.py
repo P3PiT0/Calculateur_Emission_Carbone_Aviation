@@ -37,8 +37,8 @@ class Airline():
             # Flotte de la compagnie [Avion,Passenger ou Freighter, Pourcentage d'utilisation sur le temps total]
             self.flotte = [self.df_fleet.loc[:, 'Name'],self.df_fleet.loc[:, 'Type'],(self.df_fleet.loc[:, 'TotalHours']/self.total_hours),self.df_fleet.loc[:,'Days']] 
             # CO2 total émis par la compagnie (vol avec passager, vol cargo et cumulé)
-            self.CO2_compagnie_passager, self.CO2_compagnie_cargo = self.CO2_total_compagnie(df)
-            self.CO2_compagnie_total = self.CO2_compagnie_passager+self.CO2_compagnie_cargo
+            self.CO2_vol_passager, self.CO2_vol_cargo = self.CO2_total_compagnie(df)
+            self.CO2_compagnie_total = self.CO2_vol_passager+self.CO2_vol_cargo
             # CO2 émis par passager (réel = en prenant en compte le taux d'occupation des avions, optimal = remplissage 100%)
             self.CO2_par_passager_reel, self.CO2_par_passager_optimal = self.CO2_total_par_passager()
 
@@ -66,19 +66,17 @@ class Airline():
     
     def CO2_total_par_passager(self) : 
         
-        CO2_par_passager_optimal = self.CO2_compagnie_passager*((self.load_factor)/100) / int(self.total_passenger)
-        CO2_par_passager_reel = self.CO2_compagnie_passager  / self.total_passenger
+        CO2_par_passager_optimal = self.CO2_vol_passager*((self.load_factor)/100) / int(self.total_passenger)
+        CO2_par_passager_reel = self.CO2_vol_passager  / self.total_passenger
         return CO2_par_passager_reel, CO2_par_passager_optimal
     
-    def Repartition_Emission_Type(self):
-        #Faire diagramme camembert avec self.CO2_total_cargo, self.CO2_total_passager, self.CO2_total
-        plt.pie()
-        plt.xlabel('Equivalent CO2 émis par passager (en kg)')
-        plt.ylabel('Compagnies Aériennes')
-        plt.title('Emission de CO2/passagers des compagnies britanniques')
+    def Repartition_Emission_Type_Vol(self):
+        plt.pie([self.CO2_vol_cargo,self.CO2_vol_passager],labels=['Cargo','Passenger'])
+        plt.title(f'Répartition des émission de CO2 de la compagnie {self.compagnie}')
+        plt.legend()
         plt.show() 
          
-    # def fonction affichage répartition emission entre cargo et passagers
+    
             
             
 def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
@@ -89,11 +87,12 @@ def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
         pollution_reelle.append(compagnie.CO2_par_passager_reel/1000) #EN KG
         pollution_optimale.append(compagnie.CO2_par_passager_optimal/1000) #EN KG
     
-    plt.barh(df_airline['Airline'], pollution_reelle) #Color et legende 
-    plt.barh(df_airline['Airline'], pollution_optimale) #Color et legende 
+    plt.barh(df_airline['Airline'], pollution_reelle, color = 'blue', label = 'Emissions réelles')  
+    plt.barh(df_airline['Airline'], pollution_optimale, color = 'green', label = 'Emissions optimales') 
     plt.xlabel('Equivalent CO2 émis par passager (en kg)')
     plt.ylabel('Compagnies Aériennes')
     plt.title('Emission de CO2/passagers des compagnies britanniques en 2010')
+    plt.legend()
     plt.show()
     
     

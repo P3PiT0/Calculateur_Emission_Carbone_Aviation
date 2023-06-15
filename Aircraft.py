@@ -4,7 +4,6 @@ from ambiance import Atmosphere
 #Table de correspondance associant à chaque avion un modèle de moteur, le nombre de moteur installé sur cet avion et l'altitude de croisière
 correspondance_avions_moteurs = {
     #'AVION':('MOTEUR', Nombre de moteur, Altitude de croisière(ft), Mach de croisière, Nombre maximal de passagers)
-    #TRAITER LE CAS DES HELICES
     'AIRBUS A300 B4600': ('CF6-50A', 2, 35000, 0.82, 345),
     'AIRBUS A318': ('CFM56-5B1', 2, 41000, 0.82, 136),
     'AIRBUS A319': ('CFM56-5B1', 2, 41000, 0.82, 160),

@@ -21,6 +21,7 @@ compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet, df)
 print(f"Pollution compagnie : {compagnie.CO2_compagnie_total} ")
 print(f"Pollution compagnie / passager reel : {compagnie.CO2_par_passager_reel}")
 print(f"Pollution compagnie / passager optimal : {compagnie.CO2_par_passager_optimal} ")
+compagnie.Repartition_Emission_Type_Vol()
 
 def interface_utilisateur():
     print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
