@@ -18,7 +18,7 @@ df_fleet = Data_Reader.Utilization_Data_Reader()
 Airline.Comparaison_Pollution_Compagnie(df_airline,df,df_fleet)
 
 compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet, df)
-print(f"Pollution compagnie : {compagnie.CO2_compagnie} ")
+print(f"Pollution compagnie : {compagnie.CO2_compagnie_total} ")
 print(f"Pollution compagnie / passager reel : {compagnie.CO2_par_passager_reel}")
 print(f"Pollution compagnie / passager optimal : {compagnie.CO2_par_passager_optimal} ")
 
