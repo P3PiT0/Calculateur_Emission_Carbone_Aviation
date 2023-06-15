@@ -16,7 +16,7 @@ author = 'Lucas Chamaz <lucas.chamaz.1@ens.etsmtl.ca> ; Alexandre Panhaleux <ale
 import os
 import sys
 sys.path.insert(0, os.path.abspath("../"))
-#sys.path.insert(0, os.path.abspath("../other_code"))
+sys.path.insert(0, os.path.abspath("../Modules_Calculateur_Emission_Carbone_Aviation"))
 
 templates_path = ['_templates']
 exclude_patterns = []

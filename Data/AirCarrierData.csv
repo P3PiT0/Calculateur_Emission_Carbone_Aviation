@@ -1,18 +1,15 @@
 State ;Air Carrier;Flight type;Stage Type;Year;Mth(s);Passengers Carried;Passenger-km performed;Seat-km available;Passenger load factor
-UNITED KINGDOM;AURIGNY;Scheduled flight;International flights;2010;12;8458;1566;2603;60.2%
-UNITED KINGDOM;BMI REGIONAL;Scheduled flight;International flights;2010;12;182439;150001;264631;56.7%
-UNITED KINGDOM;BRITISH AIRWAYS;Scheduled flight;International flights;2010;12;25973268;103187480;132536877;77.9%
-UNITED KINGDOM;BRITISH MIDLAND;Scheduled flight;International flights;2010;12;1546460;3670933;5505042;66.7%
-UNITED KINGDOM;EASTERN AIRWAYS;Scheduled flight;International flights;2010;12;31427;16268;45863;35.5%
-UNITED KINGDOM;FLYBE.BRITISH EUROPEAN;Scheduled flight;International flights;2010;12;1800391;1323306;2144839;61.7%
-UNITED KINGDOM;MONARCH AIRLINES;Scheduled flight;International flights;2010;12;3691355;8011271;9472177;84.6%
-UNITED KINGDOM;VIRGIN ATLANTIC;Scheduled flight;International flights;2010;12;5293293;38135064;46195821;82.6%
-UNITED KINGDOM;ASTRAEUS LTD;Scheduled flight;International flights;2010;12;503228;1107629;1520962;72.8%
-UNITED KINGDOM;AIR SOUTHWEST LTD;Scheduled flight;International flights;2010;12;2606;8875;1579;56.2%
-UNITED KINGDOM;BMIBABY LTD;Scheduled flight;International flights;2010;12;1583593;1920704;2495978;77.0%
-UNITED KINGDOM;JET2.COM LTD;Scheduled flight;International flights;2010;12;3016284;5806781;6648873;87.3%
-UNITED KINGDOM;BA CITYFLYER;Scheduled flight;International flights;2010;12;442803;34156;5369;63.6%
-UNITED KINGDOM;THOMAS COOK AIRLINES;Scheduled flight;International flights;2010;12;533116;3399097;3582880;94.9%
-UNITED KINGDOM;BLUE ISLANDS LIMITED;Scheduled flight;International flights;2010;7;8153;6312;12423;50.8%
-UNITED KINGDOM;TUI Airways;Scheduled flight;International flights;2010;12;987941;3865399;4183687;92.4%
-UNITED KINGDOM;EASYJET UK;Scheduled flight;International flights;2010;12;37664647;47015309;55348755;84.9%
+UNITED KINGDOM;BMI REGIONAL;Scheduled flight;International flights;2010;12;182,439;150,001;264,631;56.7%
+UNITED KINGDOM;BRITISH AIRWAYS;Scheduled flight;International flights;2010;12;25,973,268;103,187,480;132,536,877;77.9%
+UNITED KINGDOM;BRITISH MIDLAND;Scheduled flight;International flights;2010;12;1,546,460;3,670,933;5,505,042;66.7%
+UNITED KINGDOM;EASTERN AIRWAYS;Scheduled flight;International flights;2010;12;31,427;16,268;45,863;35.5%
+UNITED KINGDOM;FLYBE.BRITISH EUROPEAN;Scheduled flight;International flights;2010;12;1,800,391;1,323,306;2,144,839;61.7%
+UNITED KINGDOM;MONARCH AIRLINES;Scheduled flight;International flights;2010;12;3,691,355;8,011,271;9,472,177;84.6%
+UNITED KINGDOM;VIRGIN ATLANTIC;Scheduled flight;International flights;2010;12;5,293,293;38,135,064;46,195,821;82.6%
+UNITED KINGDOM;ASTRAEUS LTD;Scheduled flight;International flights;2010;12;503,228;1,107,629;1,520,962;72.8%
+UNITED KINGDOM;BMIBABY LTD;Scheduled flight;International flights;2010;12;1,583,593;1,920,704;2,495,978;77.0%
+UNITED KINGDOM;JET2.COM LTD;Scheduled flight;International flights;2010;12;3,016,284;5,806,781;6,648,873;87.3%
+UNITED KINGDOM;THOMAS COOK AIRLINES;Scheduled flight;International flights;2010;12;533,116;3,399,097;3,582,880;94.9%
+UNITED KINGDOM;TUI Airways;Scheduled flight;International flights;2010;12;987,941;3,865,399;4,183,687;92.4%
+UNITED KINGDOM;EASYJET UK;Scheduled flight;International flights;2010;12;37,664,647;47,015,309;55,348,755;84.9%
+
