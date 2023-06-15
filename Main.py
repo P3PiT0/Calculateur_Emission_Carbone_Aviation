@@ -15,14 +15,6 @@ df_airline = Data_Reader.Airline_Data_Reader()
 
 df_fleet = Data_Reader.Utilization_Data_Reader()
 
-Airline.Comparaison_Pollution_Compagnie(df_airline,df,df_fleet)
-
-compagnie = Airline.Airline('BRITISH AIRWAYS', df_airline, df_fleet, df)
-print(f"Pollution compagnie : {compagnie.CO2_compagnie_total} ")
-print(f"Pollution compagnie / passager reel : {compagnie.CO2_par_passager_reel}")
-print(f"Pollution compagnie / passager optimal : {compagnie.CO2_par_passager_optimal} ")
-compagnie.Repartition_Emission_Type_Vol()
-
 def interface_utilisateur():
     print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
     print("\n Il vous permet de comparer l'impact écologique global par passager des différentes compagnies anglaises")
@@ -43,14 +35,28 @@ def interface_utilisateur():
 Donnees_dict = interface_utilisateur()
 
 if Donnees_dict['comparaison_compagnies']:
-    #comsignes de comparaison de compagnies
-    a=2
-elif Donnees_dict['comparaison_VOLS']:
+    print('\n\n MENU COMPARAISON DES COMPAGNIES')
+    print(' Voici un diagramme barre de comparaison des émission de CO2/passager des différentes compagnies aériennes britannique')
+    Airline.Comparaison_Pollution_Compagnie(df_airline,df,df_fleet)
+if Donnees_dict['analyse_compagnie_particuliere']:
+    print('\n\n MENU ANALYSE DE COMPAGNIE')
+    print(f" Voici une analyse plus précise de la compagnie {Donnees_dict['compagnie']}")
+    compagnie = Airline.Airline(Donnees_dict['compagnie'], df_airline, df_fleet, df)
+    print(f"Pollution compagnie : {compagnie.CO2_compagnie_total/1000000} tonnes de CO2 en 2010")
+    print(f"Pollution compagnie / passager reel : {compagnie.CO2_par_passager_reel/1000000} tonnes de CO2 par personne")
+    print(f"Pollution compagnie / passager optimal : {compagnie.CO2_par_passager_optimal/1000000} tonnes de CO2 par personne")
+    print(f"Voici un diagramme montrant la répartition des émissions de CO2 de la compagnie {Donnees_dict['compagnie']} en fonction du type de vol effectué")
+    compagnie.Repartition_Emission_Type_Vol()
+if Donnees_dict['comparaison_VOLS']:
+    print('\n\n MENU COMPARAISON DE VOLS')
+    print('Voici la comparaison des émissions de CO2 de deux vols')
     voyage1 = Travel.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
     voyage2 = Travel.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
+    print(f"\n Trajet1 : {Donnees_dict['depart_airport1']}->{Donnees_dict['arrive_airport1']} à bord d'un {Donnees_dict['avion1']}")
     print(f"pollution du trajet1 : {voyage1.pollution_trajet()} tonnes de CO2")
+    print(f"\n Trajet2 : {Donnees_dict['depart_airport2']}->{Donnees_dict['arrive_airport2']} à bord d'un {Donnees_dict['avion2']}")
     print(f"pollution du trajet2 : {voyage2.pollution_trajet()} tonnes de CO2")
-else:
+if (not Donnees_dict['comparaison_VOLS']) and (not Donnees_dict['comparaison_compagnies']) and (not Donnees_dict['analyse_compagnie_particuliere']):
     print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
 
 

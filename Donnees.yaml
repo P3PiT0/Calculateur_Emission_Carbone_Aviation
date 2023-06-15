@@ -5,11 +5,15 @@
 #ATTENTION : Pour le choix des données, veillez vous référer aux indications en bas de ce document
 
 #1 COMPARATION DE COMPAGNIES AERIENNES
-comparaison_compagnies: false #true si vous voulez comparer les compagnies anglaises en termes d'émission de CO2
+comparaison_compagnies: true #true si vous voulez comparer les compagnies anglaises en termes d'émission de CO2
 
 
+#2 ANALYSE COMPAGNIE PARTICULIERE
+analyse_compagnie_particuliere: true  #true si vous voulez obtenir les données déémission de CCO2 d'une compagnie particulière
+compagnie: 'BRITISH AIRWAYS'
 
-#2 COMPARATION DE VOLS
+
+#3 COMPARATION DE VOLS
 comparaison_VOLS: true #true si vous voulez comparer des vols
 
 #VOL 1
@@ -26,10 +30,12 @@ avion2: 'AIRBUS A330 200'
 
 #INDICATIONS
 
+#Pour la liste des compagnies prises en charge, veillez vous référer au tableau 'AirCarrierData.csv' puis entrer la chaine de caractere correspondant à colonne 'AirCarrier' de ce fchier 
+
 #Pour la liste des avions pris en charge, veillez vous rérérer au tableu 'list_aircrafts.csv' puis entrer la chaîne de caractères exacte qui vous convient
 
 #Pour la liste des aéroports pris en charge, veillez vous référer au tableu 'list_airports.csv' puis entrer puis entrer le code IATA à 3 lettres de l'aéroport choisi
 
-    
+
 
     
