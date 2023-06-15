@@ -62,6 +62,8 @@ class Aircraft():
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
             #Vitesse de croisiere de l'avion
             self.vitesse_croisiere = self.Vitesse_croisière(modele,correspondance_avions_moteurs[modele][3])
+            #nombre de places passager dans l'avion
+            self.nombre_passager = correspondance_avions_moteurs[modele][4]
             #Altitude de croisière en m (initialement en ft)
             self.altitude_croisiere = correspondance_avions_moteurs[modele][2]/3.28 
             #Consommation de l'avion pour la phase LTO (g) et Croisière (g/s) 

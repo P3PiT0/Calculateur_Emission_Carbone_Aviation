@@ -56,7 +56,6 @@ class travel():
 
         #Calcul des émissions totales du trajet en calculant le temps passé en croisière grâce à la distance de croisière et à la vitesse de croisière de l'avion
         emissions_trajet = self.distance_croisiere()*1000*Emission_CO2_cruise/(self.aircraft.vitesse_croisiere) + Emission_CO2_LTO
-
         #On retourne le poids de CO2 en tonne
         return emissions_trajet/1000000
 

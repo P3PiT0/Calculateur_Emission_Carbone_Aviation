@@ -17,14 +17,14 @@ compagnie: 'BRITISH AIRWAYS'
 comparaison_VOLS: true #true si vous voulez comparer des vols
 
 #VOL 1
-arrive_airport1: 'BMB'
-depart_airport1: 'ITM'
-avion1: 'BOEING 747 400'
+arrive_airport1: 'CDG'
+depart_airport1: 'YUL'
+avion1: 'BOEING 777 300'
 
 #VOL 2
-arrive_airport2: 'BMB'
-depart_airport2: 'ITM'
-avion2: 'AIRBUS A330 200'
+arrive_airport2: 'CDG'
+depart_airport2: 'YUL'
+avion2: 'AIRBUS A340 600'
 
 
 
