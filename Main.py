@@ -37,6 +37,8 @@ Donnees_dict = interface_utilisateur()
 if Donnees_dict['comparaison_compagnies']:
     print('\n\nMENU COMPARAISON DES COMPAGNIES')
     print('Voici un diagramme barre de comparaison des émission de CO2/passager des différentes compagnies aériennes britannique')
+    Airline.Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet)
+    print('Voici un diagramme barre de comparaison des émission totales des différentes compagnies aériennes britannique')
     Airline.Comparaison_Pollution_Compagnie(df_airline,df,df_fleet)
 if Donnees_dict['analyse_compagnie_particuliere']:
     print('\n\nMENU ANALYSE DE COMPAGNIE')

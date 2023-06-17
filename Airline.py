@@ -80,7 +80,8 @@ class Airline():
     
             
             
-def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
+def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
+    
     pollution_reelle = [] 
     pollution_optimale = []
     for nom_compagnie in df_airline['Airline']:
@@ -108,6 +109,35 @@ def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
     ax.tick_params(axis='y', labelsize=8)
     ax.legend()
     plt.show()
+
+def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
+
+    pollution_totale = [] 
+    for nom_compagnie in df_airline['Airline']:
+        compagnie =Airline(nom_compagnie, df_airline, df_fleet, df)
+        pollution_totale.append(compagnie.CO2_compagnie_total/1000) #EN KG
+        
+    #Paramètre du graphique pour redimensionner les barres et permettre de faire deux graphiques en un 
+    fig, ax = plt.subplots()
+    #Graphe de la pollution totale des compagnies
+    ax.barh(df_airline['Airline'], pollution_totale, color = 'red',label='Emissions totale')
+    #Rennomage des axes, titres
+    ax.set_xlabel('Equivalent CO2 total émis (en kg)')
+    ax.set_ylabel('Compagnies Aériennes')
+    ax.set_title('Emission de CO2 totales de chaques compagnies en 2010')
+    #Affichage et dimensionnement du nom des compagnies 
+    ax.tick_params(axis='y', labelsize=8)
+    ax.legend()
+    plt.show()
+    
+    
+    
+    
+    
+        
+    
+
+    
     
     
     
