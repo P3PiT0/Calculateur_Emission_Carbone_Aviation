@@ -18,12 +18,12 @@ comparaison_VOLS: true #true si vous voulez comparer des vols
 
 #VOL 1
 arrive_airport1: 'CDG'
-depart_airport1: 'YUL'
+depart_airport1: 'JFK'
 avion1: 'BOEING 777 300'
 
 #VOL 2
 arrive_airport2: 'CDG'
-depart_airport2: 'YUL'
+depart_airport2: 'JFK'
 avion2: 'AIRBUS A340 600'
 
 

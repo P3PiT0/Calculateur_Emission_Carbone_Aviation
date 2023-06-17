@@ -16,9 +16,9 @@ df_airline = Data_Reader.Airline_Data_Reader()
 df_fleet = Data_Reader.Utilization_Data_Reader()
 
 def interface_utilisateur():
-    print('\n BIENVENUE, voici un programme de responsabilité écologique et social du voyageur aéronautique ')
+    print('\n BIENVENUE, voici un programme de responsabilité écologique et sociale du voyageur aéronautique ')
     print("\n Il vous permet de comparer l'impact écologique global par passager des différentes compagnies anglaises")
-    print("\n Si vous prévoyez un voyage en avion (en Angleterre), vous pouvez également comparer l'impact écologique de différents vols")
+    print("\n Si vous prévoyez un voyage en avion, vous pouvez également comparer l'impact écologique de différents vols")
     print(input("\n Veuillez remplir le fichier  'Donnees.yaml' afin de communiquer les entrées au programme puis appuyer sur ENTRER"))
 
     Entrees_yaml = Lecteuryamel.lecteuryamel()

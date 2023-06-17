@@ -1,5 +1,6 @@
 import Aircraft
 import matplotlib.pyplot as plt
+import numpy as np
 class Airline(): 
     '''
     Docstring
@@ -87,13 +88,27 @@ def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
         pollution_reelle.append(compagnie.CO2_par_passager_reel/1000) #EN KG
         pollution_optimale.append(compagnie.CO2_par_passager_optimal/1000) #EN KG
     
-    plt.barh(df_airline['Airline'], pollution_reelle, color = 'blue', label = 'Emissions réelles')  
-    plt.barh(df_airline['Airline'], pollution_optimale, color = 'green', label = 'Emissions optimales') 
-    plt.xlabel('Equivalent CO2 émis par passager (en kg)')
-    plt.ylabel('Compagnies Aériennes')
-    plt.title('Emission de CO2/passagers des compagnies britanniques en 2010')
-    plt.legend()
+    #Paramètre du graphique pour redimensionner les barres et permettre de faire deux graphiques en un 
+    bar_width = 0.35
+    bar_reel_position = np.arange(len(df_airline['Airline']))
+    bar_optimal_position = bar_reel_position+bar_width+0.02
+    
+    fig, ax = plt.subplots()
+    #Graphe de la pollution réelle par passagers
+    ax.barh(bar_reel_position, pollution_reelle, height=bar_width, color = 'orange',label='Emissions réelles')
+    #Graphe de la pollution optimale (si avions pleins)
+    ax.barh(bar_optimal_position, pollution_optimale, height=bar_width, color = 'green', label='Emissions optimales')
+    #Rennomage des axes, titres
+    ax.set_xlabel('Equivalent CO2 émis par passager (en kg)')
+    ax.set_ylabel('Compagnies Aériennes')
+    ax.set_title('Emission de CO2/passagers des compagnies britanniques en 2010')
+    #Affichage et dimensionnement du nom des compagnies 
+    ax.set_yticks(bar_reel_position + bar_width / 2)
+    ax.set_yticklabels(df_airline['Airline'])
+    ax.tick_params(axis='y', labelsize=8)
+    ax.legend()
     plt.show()
+    
     
     
         
