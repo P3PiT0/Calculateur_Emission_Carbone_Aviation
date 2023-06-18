@@ -1,12 +1,10 @@
 
 #import Modules_Calculateur_Emission_Carbone_Aviation
-import Data_Reader
-import Engine
-import Aircraft
-import Airline 
-import Travel
-import Lecteuryamel
-import sys
+#from Modules_Calculateur_Emission_Carbone_Aviation.Avion import Airline
+#from Modules_Calculateur_Emission_Carbone_Aviation.Lecture_Calculs_Manipulations import Travel, Data_Reader
+#from Modules_Calculateur_Emission_Carbone_Aviation.InterfaceYamel import Lecteuryamel
+
+import Modules_Calculateur_Emission_Carbone_Aviation
 
 #Formatage du dataframe
 df = Data_Reader.Emission_Data_Reader()
@@ -35,9 +33,9 @@ Donnees_dict = interface_utilisateur()
 if Donnees_dict['comparaison_compagnies']:
     print('\n\nMENU COMPARAISON DES COMPAGNIES')
     print('Voici un diagramme barre de comparaison des émissions de CO2/passager des différentes compagnies aériennes britannique')
-    Airline.Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet)
+    Airline.Comparaison_Pollution_Compagnie_Passager(df_airline, df, df_fleet)
     print('Voici un diagramme barre de comparaison des émissions totales des différentes compagnies aériennes britannique')
-    Airline.Comparaison_Pollution_Compagnie(df_airline,df,df_fleet)
+    Airline.Comparaison_Pollution_Compagnie(df_airline, df, df_fleet)
 if Donnees_dict['analyse_compagnie_particuliere']:
     print('\n\nMENU ANALYSE DE COMPAGNIE')
     print(f"Voici une analyse plus précise de la compagnie {Donnees_dict['compagnie']}")

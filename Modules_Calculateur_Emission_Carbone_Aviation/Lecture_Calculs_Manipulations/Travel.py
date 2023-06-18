@@ -1,13 +1,11 @@
 import airportsdata
 import math as mt
-import pandas as pd
-import csv
-import Aircraft
+from Modules_Calculateur_Emission_Carbone_Aviation.Avion import Aircraft
 import Data_Reader
 
 #Importation des données, un dictionnaire contenant les aéroports pris en compte et un dataframe contenant les données sur les émissions de gaz à effet de serre
 airports = airportsdata.load('IATA')
-df=Data_Reader.Emission_Data_Reader()
+df= Data_Reader.Emission_Data_Reader()
 
 class travel():
     '''

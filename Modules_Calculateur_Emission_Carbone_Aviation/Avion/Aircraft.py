@@ -1,4 +1,4 @@
-import Engine
+from Engine import Moteur
 from ambiance import Atmosphere
 
 #Table de correspondance associant à chaque avion un modèle de moteur, le nombre de moteur installé sur cet avion et l'altitude de croisière
@@ -57,7 +57,7 @@ class Aircraft():
         '''
         try: 
             #Modele de moteur associé à notre avion
-            self.moteur = moteur = Engine.Moteur(correspondance_avions_moteurs[modele][0],df_global)
+            self.moteur = moteur = Engine.Moteur(correspondance_avions_moteurs[modele][0], df_global)
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
             #Vitesse de croisiere de l'avion
