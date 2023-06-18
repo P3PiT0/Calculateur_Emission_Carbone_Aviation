@@ -88,11 +88,11 @@ def Utilization_Data_Reader():
     # On renomme les colonnes pour faciliter l'utilisation des données
     # Airline = nom des compagnies
     # Loadfactor = pourcentage d'occupation des vols
-    df.columns = ['Airline', 'Name', 'Type','Days', 'TotalHours']
+    df.columns = ['Airline', 'Name', 'Type','Days','TotalHours']
     # print(f"Noms des colonne : {df.columns}, shape : {df.shape}")
 
     # Conversion des colonnes numériques en float
-    df[['TotalHours','Days']] = df[['TotalHours','Days']].astype(float)
+    df[['Days','TotalHours']] = df[['Days','TotalHours']].astype(float)
 
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
