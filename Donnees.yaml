@@ -2,7 +2,7 @@
             ## IL PERMET D'Y ENTRER LES INPUT DU PROGRAMME ##
 
 # Veuillez choisir les donnees qui correspondent à votre demande :
-#ATTENTION : Pour le choix des données, veillez vous référer aux indications en bas de ce document
+#ATTENTION : Pour le choix des données, veuillez vous référer aux indications en bas de ce document
 
 #1 COMPARATION DE COMPAGNIES AERIENNES
 comparaison_compagnies: true #true si vous voulez comparer les compagnies anglaises en termes d'émission de CO2
