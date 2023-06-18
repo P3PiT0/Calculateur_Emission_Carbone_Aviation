@@ -3,7 +3,7 @@ import yaml
 class lecteuryamel():
 
     def __init__(self):
-        self.file = open("Donnees.yaml", 'r')
+        self.file = open("Modules/InterfaceYamel/Donnees.yaml", 'r')
         self.content = yaml.safe_load(self.file)
     
     def print_content(self):

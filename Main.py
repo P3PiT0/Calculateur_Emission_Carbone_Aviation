@@ -1,20 +1,15 @@
 
-#import Modules_Calculateur_Emission_Carbone_Aviation
-#from Modules_Calculateur_Emission_Carbone_Aviation.Avion import Airline
-#from Modules_Calculateur_Emission_Carbone_Aviation.Lecture_Calculs_Manipulations import Travel, Data_Reader
-#from Modules_Calculateur_Emission_Carbone_Aviation.InterfaceYamel import Lecteuryamel
-
-import Modules_Calculateur_Emission_Carbone_Aviation
+import Modules
 
 #Formatage du dataframe
-df = Data_Reader.Emission_Data_Reader()
+df = Modules.Emission_Data_Reader()
 
-df_airline = Data_Reader.Airline_Data_Reader()
+df_airline = Modules.Airline_Data_Reader()
 
-df_fleet = Data_Reader.Utilization_Data_Reader()
+df_fleet = Modules.Utilization_Data_Reader()
 
 def interface_utilisateur():
-    Entrees_yaml = Lecteuryamel.lecteuryamel()
+    Entrees_yaml = Modules.lecteuryamel()
     Donnees_dict = Entrees_yaml.print_content()
     if input("\n Validez-vous ces données ? (OUI/NON)") == 'OUI':
         return Donnees_dict
@@ -33,13 +28,13 @@ Donnees_dict = interface_utilisateur()
 if Donnees_dict['comparaison_compagnies']:
     print('\n\nMENU COMPARAISON DES COMPAGNIES')
     print('Voici un diagramme barre de comparaison des émissions de CO2/passager des différentes compagnies aériennes britannique')
-    Airline.Comparaison_Pollution_Compagnie_Passager(df_airline, df, df_fleet)
+    Modules.Comparaison_Pollution_Compagnie_Passager(df_airline, df, df_fleet)
     print('Voici un diagramme barre de comparaison des émissions totales des différentes compagnies aériennes britannique')
-    Airline.Comparaison_Pollution_Compagnie(df_airline, df, df_fleet)
+    Modules.Comparaison_Pollution_Compagnie(df_airline, df, df_fleet)
 if Donnees_dict['analyse_compagnie_particuliere']:
     print('\n\nMENU ANALYSE DE COMPAGNIE')
     print(f"Voici une analyse plus précise de la compagnie {Donnees_dict['compagnie']}")
-    compagnie = Airline.Airline(Donnees_dict['compagnie'], df_airline, df_fleet, df)
+    compagnie = Modules.Airline(Donnees_dict['compagnie'], df_airline, df_fleet, df)
     print(f"Pollution compagnie : {round(compagnie.CO2_compagnie_total/1000000,3)} tonnes de CO2 en 2010")
     print(f"Pollution compagnie / passager reel : {round(compagnie.CO2_par_passager_reel/1000,3)} kg de CO2 par personne")
     print(f"Pollution compagnie / passager optimal : {round(compagnie.CO2_par_passager_optimal/1000,3)} kg de CO2 par personne")
@@ -50,8 +45,8 @@ if Donnees_dict['analyse_compagnie_particuliere']:
 if Donnees_dict['comparaison_VOLS']:
     print('\n\nMENU COMPARAISON DE VOLS')
     print('Voici la comparaison des émissions de CO2 de deux vols')
-    voyage1 = Travel.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
-    voyage2 = Travel.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
+    voyage1 = Modules.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
+    voyage2 = Modules.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
     print(f"\nTrajet1 : {Donnees_dict['depart_airport1']}->{Donnees_dict['arrive_airport1']} à bord d'un {Donnees_dict['avion1']}")
     print(f"Pollution du trajet1 : {round(voyage1.pollution_trajet(),3)} tonnes de CO2")
     print(f"Pollution par passager : {round(voyage1.pollution_trajet()/voyage1.aircraft.nombre_passager,3)} tonnes de CO2 par passager")

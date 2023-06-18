@@ -1,3 +1,3 @@
 from .Engine import Moteur
 from .Aircraft import Aircraft
-from .Airline import Airline
+from .Airline import *

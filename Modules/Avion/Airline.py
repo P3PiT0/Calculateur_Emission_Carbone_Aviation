@@ -1,14 +1,10 @@
 from . import Aircraft
 import matplotlib.pyplot as plt
 import numpy as np
-
 class Airline(): 
     '''
     Docstring
     '''
-    
-    #Attribut
-    
     #Constructeur 
     def __init__(self, compagnie, df_airline, df_fleet, df):
         '''
@@ -68,7 +64,7 @@ class Airline():
         CO2_total_cargo = 0 
         CO2_total_passager = 0 
         for i in range(0,len(self.flotte[0])) :
-            modele_avion = Aircraft.Aircraft(self.flotte[0][i], df)
+            modele_avion = Aircraft(self.flotte[0][i], df)
             #Si l'avion transporte des passagers
             if self.flotte[1][i] == 'Passenger': 
                 #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour

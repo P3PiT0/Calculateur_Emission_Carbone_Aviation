@@ -12,7 +12,7 @@ def Emission_Data_Reader ():
     :return: pandas dataframe
     """
     #Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('../../Data/EmissionData.csv', delimiter=';', decimal=',', usecols=(2, 3, 14, 17, 28, 30, 41, 43, 59, 78, 81), encoding ='unicode_escape')
+    df = pd.read_csv('Data/EmissionData.csv', delimiter=';', decimal=',', usecols=(2, 3, 14, 17, 28, 30, 41, 43, 59, 78, 81), encoding ='unicode_escape')
 
     #On renomme les colonnes pour faciliter l'utilisation des données
     #LTO = donnée pour les phases de décollage, montée et atterrissage 
@@ -64,7 +64,7 @@ def Airline_Data_Reader():
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('../../Data/AirCarrierData.csv', delimiter=';', decimal=',',
+    df = pd.read_csv('Data/AirCarrierData.csv', delimiter=';', decimal=',',
                      usecols=(1, 7, 9), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
@@ -83,7 +83,7 @@ def Utilization_Data_Reader():
     :return: pandas dataframe
     """
     # Lecture du fichier CSV, selection des colonnes utiles
-    df = pd.read_csv('../../Data/FleetUtilizationData.csv', delimiter=';', decimal=',', usecols=(0, 1, 2, 3, 4), encoding='unicode_escape')
+    df = pd.read_csv('Data/FleetUtilizationData.csv', delimiter=';', decimal=',', usecols=(0, 1, 2, 3, 4), encoding='unicode_escape')
 
     # On renomme les colonnes pour faciliter l'utilisation des données
     # Airline = nom des compagnies
