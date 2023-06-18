@@ -1,0 +1,37 @@
+Modules.Avion package
+=====================
+
+Submodules
+----------
+
+Modules.Avion.Aircraft module
+-----------------------------
+
+.. automodule:: Modules.Avion.Aircraft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Modules.Avion.Airline module
+----------------------------
+
+.. automodule:: Modules.Avion.Airline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Modules.Avion.Engine module
+---------------------------
+
+.. automodule:: Modules.Avion.Engine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: Modules.Avion
+   :members:
+   :undoc-members:
+   :show-inheritance:
