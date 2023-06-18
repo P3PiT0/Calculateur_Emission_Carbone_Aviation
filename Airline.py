@@ -70,19 +70,26 @@ class Airline():
             modele_avion = Aircraft.Aircraft(self.flotte[0][i], df)
             #Si l'avion transporte des passagers
             if self.flotte[1][i] == 'Passenger': 
-                #print('****DEBUT****')
-                #print (self.flotte)
-                
                 #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
                 CO2_total_passager += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
-                CO2_total_passager += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]
+                CO2_total_passager += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
             #Si l'avion est un transport Cargo
             elif self.flotte[1][i] == 'Freighter':
                 #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
                 CO2_total_cargo += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
-                CO2_total_cargo += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]
+                CO2_total_cargo += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
         return CO2_total_passager, CO2_total_cargo
     
+    def Repartition_Utilisation_Flotte(self):
+        '''
+        Affiche un graphique de type pie chart illustrant l'utilisation de chaque modèle d'avion par rapport
+        au temps de vol total de la compagnie.
+        ''' 
+        plt.pie(self.flotte[2],labels=self.flotte[0])
+        plt.title(f'Répartition du temps de vol de la flotte de la compagnie {self.compagnie}')
+        plt.legend(fontsize='small')
+        plt.show()
+                  
     def CO2_total_par_passager(self) : 
         '''
         Renvoi les quantités de CO2/passagers optimale (en considèrant un taux de remplissage de 100%) et 

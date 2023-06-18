@@ -47,6 +47,8 @@ if Donnees_dict['analyse_compagnie_particuliere']:
     print(f"Pollution compagnie / passager optimal : {round(compagnie.CO2_par_passager_optimal/1000,3)} kg de CO2 par personne")
     print(f"Voici un diagramme montrant la répartition des émissions de CO2 de la compagnie {Donnees_dict['compagnie']} en fonction du type de vol effectué")
     compagnie.Repartition_Emission_Type_Vol()
+    print("Voici un diagramme montrant la part d'utilisation des modèles d'avions de la flotte")
+    compagnie.Repartition_Utilisation_Flotte()
 if Donnees_dict['comparaison_VOLS']:
     print('\n\nMENU COMPARAISON DE VOLS')
     print('Voici la comparaison des émissions de CO2 de deux vols')
