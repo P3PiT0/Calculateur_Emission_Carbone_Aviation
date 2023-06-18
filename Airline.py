@@ -70,8 +70,8 @@ class Airline():
             modele_avion = Aircraft.Aircraft(self.flotte[0][i], df)
             #Si l'avion transporte des passagers
             if self.flotte[1][i] == 'Passenger': 
-                print('****DEBUT****')
-                print (self.flotte)
+                #print('****DEBUT****')
+                #print (self.flotte)
                 
                 #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
                 CO2_total_passager += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
