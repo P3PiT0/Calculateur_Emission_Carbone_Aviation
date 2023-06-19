@@ -54,7 +54,7 @@ if Donnees_dict['comparaison_VOLS']:
     print(f"Pollution par passager : {round(voyage1.pollution_trajet()/voyage1.aircraft.nombre_passager,3)} tonnes de CO2 par passager")
     print(f"\nTrajet2 : {Donnees_dict['depart_airport2']}->{Donnees_dict['arrive_airport2']} à bord d'un {Donnees_dict['avion2']}")
     print(f"Pollution du trajet2 : {round(voyage2.pollution_trajet(),3)} tonnes de CO2")
-    print(f"Pollution par passager : {round(voyage2.pollution_trajet()/voyage2.aircraft.nombre_passager,3)} tonnes de CO2")
+    print(f"Pollution par passager : {round(voyage2.pollution_trajet()/voyage2.aircraft.nombre_passager,3)} tonnes de CO2 par passager")
 
 if (not Donnees_dict['comparaison_VOLS']) and (not Donnees_dict['comparaison_compagnies']) and (not Donnees_dict['analyse_compagnie_particuliere']):
     print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
