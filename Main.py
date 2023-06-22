@@ -1,11 +1,11 @@
 
 import Modules
-
-#Formatage du dataframe
+#Formatage des dataframe
+#Dataframe contenant les émissions des moteurs
 df = Modules.Emission_Data_Reader()
-
+#Dataframe contenant les statistiques des compagnies aériennes
 df_airline = Modules.Airline_Data_Reader()
-
+#Dataframe contenant les informations sur les flottes des différentes compagnies 
 df_fleet = Modules.Utilization_Data_Reader()
 
 def interface_utilisateur():
