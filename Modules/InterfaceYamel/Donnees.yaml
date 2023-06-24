@@ -10,7 +10,7 @@ comparaison_compagnies: true #true si vous voulez comparer les compagnies anglai
 
 #2 ANALYSE COMPAGNIE PARTICULIERE
 analyse_compagnie_particuliere: true  #true si vous voulez obtenir les données déémission de CCO2 d'une compagnie particulière
-compagnie: 'BRITISH AIRWAYS'
+compagnie_particuliere: 'BRITISH AIRWAYS'
 
 
 #3 COMPARATION DE VOLS
@@ -20,12 +20,13 @@ comparaison_VOLS: true #true si vous voulez comparer des vols
 arrive_airport1: 'CDG'
 depart_airport1: 'JFK'
 avion1: 'BOEING 777 300'
+compagnie_travel1: 'EASYJET UK'
 
 #VOL 2
 arrive_airport2: 'CDG'
 depart_airport2: 'JFK'
 avion2: 'AIRBUS A340 600'
-
+compagnie_travel2: 'BRITISH AIRWAYS'
 
 
 #INDICATIONS
