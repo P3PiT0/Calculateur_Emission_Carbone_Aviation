@@ -25,20 +25,12 @@ class Airline():
             # Réinitialisation de l'index à 1
             self.df_fleet = df_fleet.loc[df_fleet['Airline'] == compagnie]
             self.df_fleet.reset_index(drop=True, inplace=True)
-            # Pourcentage d'occupation sur l'année 2010, on supprime le symbole %
-            self.load_factor = float(self.df_airline.loc[0,'LoadFactor'][:-1])
-            # Nombre total de passager sur l'année 2010
-            self.total_passenger = self.df_airline.loc[0,'TotalPassenger']
-
             # Nombre d'heure de vol de la flotte sur l'année 
             self.total_hours = self.df_fleet['TotalHours'].sum()
             # Flotte de la compagnie [Avion,Passenger ou Freighter, Pourcentage d'utilisation sur le temps total]
             self.flotte = [self.df_fleet.loc[:, 'Name'],self.df_fleet.loc[:, 'Type'],(self.df_fleet.loc[:, 'TotalHours']/self.total_hours),self.df_fleet.loc[:,'Days']] 
             # CO2 total émis par la compagnie (vol avec passager, vol cargo et cumulé)
-            self.CO2_vol_passager, self.CO2_vol_cargo = self.CO2_total_compagnie(df)
-            self.CO2_compagnie_total = self.CO2_vol_passager+self.CO2_vol_cargo
-            # CO2 émis par passager (réel = en prenant en compte le taux d'occupation des avions, optimal = remplissage 100%)
-            self.CO2_par_passager_reel, self.CO2_par_passager_optimal = self.CO2_total_par_passager()
+            self.CO2_compagnie_total = self.CO2_total_compagnie(df,'Global')
 
         except KeyError:
             # Met fin au code si le nom saisie n'est pas dans la base de donnée
@@ -46,7 +38,7 @@ class Airline():
             exit()
             
     #Méthodes
-    def CO2_total_compagnie(self,df): 
+    def CO2_total_compagnie(self,df,segment): 
         '''
         Renvoi les quantités de CO2 émises par la compagnie en différenciant les avions de transport cargo et 
         les avions de transport de passagers. 
@@ -58,24 +50,30 @@ class Airline():
         
         :param df: Dataframe contenant les informations sur les consommations des moteurs
         :type df: Pandas Dataframe
-        :return: Masse de CO2 rejeté par la compagnie en gramme pour la branche cargo et pour la branche passager.
+        :parm segment: 'Freighter' = CO2 de la partie fret, 'Passenger' = CO2 de la partie transport de passager, 'Global' = CO2 total
+        :type segment: string
+        
+        :return: Masse de CO2 rejeté par la compagnie en gramme pour le segment spécifié 
         :rtype: float
         '''
-        CO2_total_cargo = 0 
-        CO2_total_passager = 0 
+        CO2_segment = 0 
         for i in range(0,len(self.flotte[0])) :
-            modele_avion = Aircraft(self.flotte[0][i], df)
-            #Si l'avion transporte des passagers
-            if self.flotte[1][i] == 'Passenger': 
-                #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
-                CO2_total_passager += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
-                CO2_total_passager += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
-            #Si l'avion est un transport Cargo
-            elif self.flotte[1][i] == 'Freighter':
-                #On fait l'hypothèse qu'un avion fait un cycle LTO une fois par jour
-                CO2_total_cargo += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
-                CO2_total_cargo += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
-        return CO2_total_passager, CO2_total_cargo
+            #On ne différencie pas les avions
+            if segment == 'Global' :
+                modele_avion = Aircraft(self.flotte[0][i], df)
+                CO2_segment += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
+                CO2_segment += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
+            #On souhaite avoir les émissions du segment transport de passager
+            elif segment == 'Passenger' and self.flotte[1][i] == 'Passenger':
+                modele_avion = Aircraft(self.flotte[0][i], df)
+                CO2_segment += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
+                CO2_segment += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
+            #On souhaite avoir les émissions du segment transport de marchandise
+            elif segment == 'Freighter' and self.flotte[1][i] == 'Freighter':
+                modele_avion = Aircraft(self.flotte[0][i], df)
+                CO2_segment += modele_avion.consommation_moteur_LTO*self.flotte[3][i]
+                CO2_segment += modele_avion.consommation_moteur_cruise*3600*self.flotte[2][i]*self.total_hours
+        return CO2_segment
     
     def Repartition_Utilisation_Flotte(self):
         '''
@@ -86,7 +84,38 @@ class Airline():
         plt.title(f'Répartition du temps de vol de la flotte de la compagnie {self.compagnie}')
         plt.legend(fontsize='small')
         plt.show()
-                  
+    
+    def Repartition_Emission_Type_Vol(self, df):
+        '''
+        Affiche un graphique de type pie chart illustrant la répartition des émissions en CO2 de la 
+        compagnie en kg entre le transports de marchandises et de passagers.
+        '''
+        segment_cargo = AirlineFreighter(self.compagnie, self.df_airline, self.df_fleet, df)
+        segment_passenger = AirlinePassenger(self.compagnie, self.df_airline, self.df_fleet, df) 
+        plt.pie([segment_cargo.CO2_vol_cargo,segment_passenger.CO2_vol_passager],labels=['Cargo','Passenger'])
+        plt.title(f'Répartition des émission de CO2 de la compagnie {self.compagnie} par segment')
+        plt.legend()
+        plt.show() 
+        
+        
+class AirlineFreighter(Airline):
+    def __init__(self, compagnie, df_airline, df_fleet, df):
+        super().__init__(compagnie, df_airline, df_fleet, df)
+        #Emission de CO2 lié au transport de marchandises
+        self.CO2_vol_cargo = super().CO2_total_compagnie(df,'Freighter')
+        
+class AirlinePassenger(Airline):
+    def __init__(self, compagnie, df_airline, df_fleet, df):
+        super().__init__(compagnie, df_airline, df_fleet, df)
+        # Pourcentage d'occupation sur l'année 2010, on supprime le symbole %
+        self.load_factor = float(self.df_airline.loc[0,'LoadFactor'][:-1])
+        # Nombre total de passager sur l'année 2010
+        self.total_passenger = self.df_airline.loc[0,'TotalPassenger']
+        # Emission de CO2 lié au transport de passagers
+        self.CO2_vol_passager = super().CO2_total_compagnie(df,'Passenger')
+        # CO2 émis par passager (réel = en prenant en compte le taux d'occupation des avions, optimal = remplissage 100%)
+        self.CO2_par_passager_reel, self.CO2_par_passager_optimal = self.CO2_total_par_passager()
+    
     def CO2_total_par_passager(self) : 
         '''
         Renvoi les quantités de CO2/passagers optimale (en considèrant un taux de remplissage de 100%) et 
@@ -97,17 +126,7 @@ class Airline():
         '''
         CO2_par_passager_optimal = self.CO2_vol_passager*((self.load_factor)/100) / int(self.total_passenger)
         CO2_par_passager_reel = self.CO2_vol_passager  / self.total_passenger
-        return CO2_par_passager_reel, CO2_par_passager_optimal
-    
-    def Repartition_Emission_Type_Vol(self):
-        '''
-        Affiche un graphique de type pie chart illustrant la répartition des émissions en CO2 de la 
-        compagnie en kg entre le transports de marchandises et de passagers.
-        '''
-        plt.pie([self.CO2_vol_cargo,self.CO2_vol_passager],labels=['Cargo','Passenger'])
-        plt.title(f'Répartition des émission de CO2 de la compagnie {self.compagnie}')
-        plt.legend()
-        plt.show() 
+        return CO2_par_passager_reel, CO2_par_passager_optimal            
                     
 def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
     '''
@@ -125,9 +144,9 @@ def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
         '''
     pollution_reelle = [] 
     pollution_optimale = []
-    #Création d'un objet compagnie pour chaque compagnie de df_Airline 
+    #Création d'un objet AirlinePassenger pour chaque compagnie de df_Airline 
     for nom_compagnie in df_airline['Airline']:
-        compagnie =Airline(nom_compagnie, df_airline, df_fleet, df)
+        compagnie =AirlinePassenger(nom_compagnie, df_airline, df_fleet, df)
         #Stockage des valeurs (en kg)
         pollution_reelle.append(compagnie.CO2_par_passager_reel/1000)
         pollution_optimale.append(compagnie.CO2_par_passager_optimal/1000) 
