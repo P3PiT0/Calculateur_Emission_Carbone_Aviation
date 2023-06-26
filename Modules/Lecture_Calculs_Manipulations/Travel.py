@@ -1,6 +1,6 @@
 import airportsdata
 import math as mt
-from Modules import Aircraft
+from Modules import Airliner
 from . import Data_Reader
 
 #Importation des données, un dictionnaire contenant les aéroports pris en compte et un dataframe contenant les données sur les émissions de gaz à effet de serre
@@ -20,7 +20,7 @@ class travel():
     def __init__(self, arrive_airport, depart_airport, aircraft):
         self.arrive_airport = arrive_airport
         self.depart_airport = depart_airport
-        self.aircraft = Aircraft(aircraft, df)
+        self.aircraft = Airliner(aircraft, df)
 
     '''
     Fonction qui calcule la distance de croisière du voyage

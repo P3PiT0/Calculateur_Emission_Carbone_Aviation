@@ -55,14 +55,20 @@ if Donnees_dict['comparaison_VOLS']:
     voyage2 = Modules.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
     compagnie_travel1 = Modules.Airline(Donnees_dict['compagnie_travel1'], df_airline, df_fleet, df)
     compagnie_travel2 = Modules.Airline(Donnees_dict['compagnie_travel2'], df_airline, df_fleet, df)
+    #Trajet 1
     print(f"\nTrajet1 : {Donnees_dict['depart_airport1']}->{Donnees_dict['arrive_airport1']} à bord d'un {Donnees_dict['avion1']} opéré par la compagnie {Donnees_dict['compagnie_travel1']}")
     print(f"Pollution du trajet1 : {round(voyage1.pollution_trajet(),3)} tonnes de CO2")
-    #ici, on prend en compte le nombre de places dans 'avion et le taux de remplissage des avions de la cpmâgniepour calculer la pollution par passager
-    print(f"Pollution par passager : {round(voyage1.pollution_trajet()/(voyage1.aircraft.nombre_passager*compagnie_travel1.load_factor/100),3)} tonnes de CO2 par passager")
+    #ici, on prend en compte le nombre de places dans l'avion et le taux de remplissage des avions de la compagnie pour calculer la pollution par passager
+    print(f"Pollution par passager en tenant compte de la compagnie: {round(voyage1.pollution_trajet()/(voyage1.aircraft.nombre_passager*compagnie_travel1.load_factor/100),3)} tonnes de CO2 par passager")
+    #sans tenir compte de la compagnie 
+    print(f"Pollution par passager sans tenir compte de la compagnie: {round(voyage1.pollution_trajet()/(voyage1.aircraft.nombre_passager),3)} tonnes de CO2 par passager")
+    #Trajet 2
     print(f"\nTrajet2 : {Donnees_dict['depart_airport2']}->{Donnees_dict['arrive_airport2']} à bord d'un {Donnees_dict['avion2']} opéré par la compagnie {Donnees_dict['compagnie_travel2']}")
     print(f"Pollution du trajet2 : {round(voyage2.pollution_trajet(),3)} tonnes de CO2")
-    #ici, on prend en compte le nombre de places dans 'avion et le taux de remplissage des avions de la cpmâgniepour calculer la pollution par passager
+    #ici, on prend en compte le nombre de places dans l'avion et le taux de remplissage des avions de la compagnie pour calculer la pollution par passager
     print(f"Pollution par passager : {round(voyage2.pollution_trajet()/(voyage2.aircraft.nombre_passager*compagnie_travel2.load_factor/100),3)} tonnes de CO2 par passager")
+    #sans tenir compte de la compagnie 
+    print(f"Pollution par passager sans tenir compte de la compagnie: {round(voyage2.pollution_trajet()/(voyage2.aircraft.nombre_passager),3)} tonnes de CO2 par passager")
 #Cas ou aucune fonctionnalité n'est sélectionnée 
 if (not Donnees_dict['comparaison_VOLS']) and (not Donnees_dict['comparaison_compagnies']) and (not Donnees_dict['analyse_compagnie_particuliere']):
     print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
