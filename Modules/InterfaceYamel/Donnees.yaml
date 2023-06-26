@@ -10,7 +10,7 @@ comparaison_compagnies: true #true si vous voulez comparer les compagnies anglai
 
 #2 ANALYSE COMPAGNIE PARTICULIERE
 analyse_compagnie_particuliere: true  #true si vous voulez obtenir les données déémission de CCO2 d'une compagnie particulière
-compagnie_particuliere: 'BRITISH AIRWAYS'
+compagnie_particuliere: 'TEST AIRLINE'
 
 
 #3 COMPARATION DE VOLS
