@@ -108,10 +108,7 @@ class Airline():
         plt.title(f'Répartition des émission de CO2 de la compagnie {self.compagnie}')
         plt.legend()
         plt.show() 
-         
-    
-            
-            
+                    
 def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
     '''
         Affiche un graphique de type bar chart horizontal illustrant les émissions en CO2/passagers de 

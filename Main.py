@@ -28,12 +28,14 @@ print("\n Le fichier se retrouve dans le dossier 'Modules', puis dans le dossier
 print(input("\n Une fois le fichier 'Donnees.yaml' bien remplis, appuyez sur la touche ENTRER de votre clavier"))
 Donnees_dict = interface_utilisateur()
 
+#Comparaison des compagnies 
 if Donnees_dict['comparaison_compagnies']:
     print('\n\nMENU COMPARAISON DES COMPAGNIES')
     print('Voici un diagramme barre de comparaison des émissions de CO2/passager des différentes compagnies aériennes britannique')
     Modules.Comparaison_Pollution_Compagnie_Passager(df_airline, df, df_fleet)
     print('Voici un diagramme barre de comparaison des émissions totales des différentes compagnies aériennes britannique')
     Modules.Comparaison_Pollution_Compagnie(df_airline, df, df_fleet)
+#Analyse d'une compagnie sélectionnée 
 if Donnees_dict['analyse_compagnie_particuliere']:
     print('\n\nMENU ANALYSE DE COMPAGNIE')
     print(f"Voici une analyse plus précise de la compagnie {Donnees_dict['compagnie_particuliere']}")
@@ -45,6 +47,7 @@ if Donnees_dict['analyse_compagnie_particuliere']:
     compagnie.Repartition_Emission_Type_Vol()
     print("Voici un diagramme montrant la part d'utilisation des modèles d'avions de la flotte")
     compagnie.Repartition_Utilisation_Flotte()
+#Comparaison de différents vols 
 if Donnees_dict['comparaison_VOLS']:
     print('\n\nMENU COMPARAISON DE VOLS')
     print('Voici la comparaison des émissions de CO2 de deux vols')
@@ -60,7 +63,7 @@ if Donnees_dict['comparaison_VOLS']:
     print(f"Pollution du trajet2 : {round(voyage2.pollution_trajet(),3)} tonnes de CO2")
     #ici, on prend en compte le nombre de places dans 'avion et le taux de remplissage des avions de la cpmâgniepour calculer la pollution par passager
     print(f"Pollution par passager : {round(voyage2.pollution_trajet()/(voyage2.aircraft.nombre_passager*compagnie_travel2.load_factor/100),3)} tonnes de CO2 par passager")
-
+#Cas ou aucune fonctionnalité n'est sélectionnée 
 if (not Donnees_dict['comparaison_VOLS']) and (not Donnees_dict['comparaison_compagnies']) and (not Donnees_dict['analyse_compagnie_particuliere']):
     print("Veillez vous rendre sur le fichier 'Donnes.yaml' et y rentrer les donnees souhaitées")
 
