@@ -1,10 +1,7 @@
 import pandas as pd
 
 class Moteur(): 
-    '''
-    Docstring
-    '''
-    
+
     #Constructeur 
     def __init__(self,modele,df_global):
         '''
