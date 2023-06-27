@@ -1,5 +1,5 @@
 # Calculateur_Emission_Carbone_Aviation
- Ce dépôt GitHub à pour but de proposer un outil développé en Python permettant de sélectionner un vol aérien en 
+ Cette application Python à pour but de proposer un outil développé en Python permettant de sélectionner un vol aérien en 
  fonction des émissions de carbones engendrés par la compagnie aérienne, l'avion choisie et les destinations de départ 
  et d'arrivée choisie.
 
@@ -22,9 +22,28 @@ les instructions d'opération
 11. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
 
 
-Le code commence par l'importation du module "Aircraft" depuis un module local, ainsi que des modules "matplotlib.pyplot" et "numpy".
+## Notice d'utilisation
+### Installation 
+1. Téléchargez le dossier compressé contenant l'application sur votre ordinateur.
+2. Extraire le dossier compressé
+3. Sur votre logiciel de préférence supportant Python, ouvrez le dossier principal de l'application.
+4. Ouvrez le dossier où se situe le fichier 'setup.py'
+5. Dans le terminal de votre logiciel, exécuter le fichier 'setup.py' à l'aide de la commande: python setup.py install
+6. L'application est maintenant prête à être utilisée.
+7. Ouvrez une invite de commande ou un terminal et se rendre dans le répertoire de travail ou se trouve le.py et le gcode.
+8. Exécutez le programme 
 
-## Modules, classes et méthodes utilisées:
+### Avant d'exécuter l'application
+1. Avant d'exécuter l'application assurez-vous d'avoir fait vos sélections dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'
+
+### Exécution de l'application
+1. Pour exécuter l'application, ouvrez et exécutr le fichier 'Main.py'
+
+### Modification du code par l'utilisateur
+La seule modification nécessaire du code  fait par l'utilisateur, est la sélection des choix et paramètres dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'
+
+
+## Modules, classes, méthodes et fonctions utilisées:
 Tous les modules employés dans cette application ce retrouvent dans le dossier "Modules". Les modules sont regroupés dans des sous-dossiers.
 Chacuns de ces sous-dossiers contient un script '__init__' qui est la méthode constructeur pour créé la classe. Le dossier principal 'Modules' contient lui aussi un script "__init__" qui importe les 3 modules créés.
 ### 1. Module Avion
@@ -137,4 +156,5 @@ La méthode distance_croisiere calcule la distance de croisière du voyage en ut
 La méthode pollution_trajet calcule et renvoie les émissions de CO2 du trajet en utilisant les données disponibles sur l'avion et ses moteurs. Les émissions sont retournées en tonnes de CO2.
 
 En résumé, le script représente une classe travel qui permet de calculer la distance de croisière d'un voyage entre deux aéroports et d'estimer les émissions de CO2 du trajet en utilisant les données sur l'avion et ses moteurs.
+
 
