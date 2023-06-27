@@ -42,9 +42,7 @@ correspondance_avions_moteurs = {
     'EMBRAER EMB135': ('AE3007A', 2, 37000, 0.77, 37)}
 
 class Aircraft():
-    '''
-    Docstring
-    '''
+
     #Constructeur 
     def __init__(self,modele,df_global):
         '''Constructeur pour initialisation des informations de notre avion à  partir du modele entrée et 
@@ -112,12 +110,3 @@ class Aircraft():
         #Calcul de la vitesse de croisière grâce au mach de croisière (m/s)
         vitesse_croisiere = mach*vitesse_son
         return round(float(vitesse_croisiere),2)
-   
-    
-    
-    
-            
-
-        
-        
- 

@@ -14,6 +14,8 @@ class Airline():
         :type nom: string
         :param df_airline: Dataframe contenant les informations sur les compagnies
         :type constructeur: Pandas Dataframe
+        :param df_fleet: Dataframe contenant les informations sur les compagnies
+        :type constructeur: Pandas Dataframe
         '''
         try:
             self.compagnie = compagnie

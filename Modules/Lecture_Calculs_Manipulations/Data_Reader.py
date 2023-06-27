@@ -4,9 +4,9 @@ import airportsdata
 import csv
 
 def Emission_Data_Reader (): 
-    """Cette fonction lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion 
+    """Cette méthode lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion
     qui contient des informations sur les émissions de gaz d'échappement des moteurs d'avion. Par la suite
-    ce cette fonction va nettoyer les données pour en faciliter l'analyse par la suite en conservant les colonnes
+    ce cette méthode va nettoyer les données pour en faciliter l'analyse par la suite en conservant les colonnes
     désirées et en les renommant.
     
     :return: pandas dataframe
@@ -36,7 +36,7 @@ def Emission_Data_Reader ():
 
 '''
 def Airport_Data_Reader():
-    """Cette fonction lit les données du module airportsdata et récupère la latitude et la longitude et 
+    """Cette méthode lit les données du module airportsdata et récupère la latitude et la longitude et 
     le code iata des aeroports anglais. Par la suite on va renvoyer ce dictionnaire contenant la latitude,
     la longitude, le code iata et d'autres informations pour chaque aéroports anglais. 
     
@@ -58,7 +58,7 @@ def Airport_Data_Reader():
 
 
 def Airline_Data_Reader():
-    """Cette fonction lit les données concernant le pourcentage d'occupation des avions pour les compagnies
+    """Cette méthode lit les données concernant le pourcentage d'occupation des avions pour les compagnies
     aeriennes étudiées.
 
     :return: pandas dataframe
@@ -77,7 +77,7 @@ def Airline_Data_Reader():
     return df
 
 def Utilization_Data_Reader():
-    """Cette fonction lit les donnees concernant les avions composant la flotte des compagnies
+    """Cette méthode lit les donnees concernant les avions composant la flotte des compagnies
     aeriennes étudiées.
 
     :return: pandas dataframe

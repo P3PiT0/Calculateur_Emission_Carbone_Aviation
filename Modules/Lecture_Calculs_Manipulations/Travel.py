@@ -8,9 +8,6 @@ airports = airportsdata.load('IATA')
 df= Data_Reader.Emission_Data_Reader()
 
 class travel():
-    '''
-    Docstring
-    '''
 
     '''Fonction d'initialisation de la classe travel, celle-ci contient trois attributs :
       - le code iata de l'aéroport d'arrivé du voyage
