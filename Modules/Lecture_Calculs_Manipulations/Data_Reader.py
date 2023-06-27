@@ -78,7 +78,7 @@ def Airline_Data_Reader():
 
 def Utilization_Data_Reader():
     """Cette fonction lit les donnees concernant les avions composant la flotte des compagnies
-    aeriennes étudiées.
+    aeriennes étudiées et les informations sur leur utilisation.
 
     :return: pandas dataframe
     """

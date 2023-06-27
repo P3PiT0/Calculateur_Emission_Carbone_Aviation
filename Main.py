@@ -31,10 +31,13 @@ Donnees_dict = interface_utilisateur()
 #COMPARAISON DES COMPAGNIES DE NOTRE BASE DE DONNEE 
 if Donnees_dict['comparaison_compagnies']:
     print('\n\nMENU COMPARAISON DES COMPAGNIES')
-    print('Voici un diagramme barre de comparaison des émissions de CO2/passager des différentes compagnies aériennes britannique')
-    Modules.Comparaison_Pollution_Compagnie_Passager(df_airline, df, df_fleet)
-    print('Voici un diagramme barre de comparaison des émissions totales des différentes compagnies aériennes britannique')
-    Modules.Comparaison_Pollution_Compagnie(df_airline, df, df_fleet)
+    print('Voici un diagramme barre de comparaison des émissions de CO2/passager des différentes compagnies aériennes britanniques')
+    Modules.Comparaison_Emission_Compagnie(df_airline, df, df_fleet,'Passenger')
+    print('Voici un diagramme barre de comparaison des émissions totales des différentes compagnies aériennes britanniques')
+    Modules.Comparaison_Emission_Compagnie(df_airline, df, df_fleet,'Global')
+    print('Voici un diagramme barre de comparaison des émissions liées au transport de marchandises des différentes compagnies aériennes britanniques')
+    Modules.Comparaison_Emission_Compagnie(df_airline, df, df_fleet,'Freighter')
+    
 
 #ANALYSE D'UNE COMPAGNIE SELECTIONNEE 
 if Donnees_dict['analyse_compagnie_particuliere']:

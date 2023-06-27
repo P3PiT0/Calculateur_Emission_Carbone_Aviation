@@ -127,6 +127,120 @@ class AirlinePassenger(Airline):
         CO2_par_passager_optimal = self.CO2_vol_passager*((self.load_factor)/100) / int(self.total_passenger)
         CO2_par_passager_reel = self.CO2_vol_passager  / self.total_passenger
         return CO2_par_passager_reel, CO2_par_passager_optimal            
+    
+def Comparaison_Emission_Compagnie(df_airline,df,df_fleet,segment):
+    '''
+        Affiche un graphique de type bar chart horizontal illustrant les émissions en CO2 des différents
+        segments des compagnies. 
+        
+        Dans le cas ou segment = 'Passenger', on affiche sur le même graphique et pour chaque compagnie
+        la quantité de CO2/passager réelle et la quantité de CO2/passager optimale (en considérant 
+        un taux de remplissage de 100%). Les valeurs affichées sont en kg/passagers
+        
+        Dans le cas ou segment = 'Global', on affiche un graphique contenant les émissions totales de 
+        chaques compagnies aériennes étudiées. Les valeurs affichées sont en kg.
+        
+        Dans le cas ou segment = 'Freighter', on affiche un graphique contenant les émissions des compagnies 
+        liées au transport de marchandises. Les valeurs affichées sont en kg
+
+        :param df_airline: Dataframe contenant les informations des compagnies aériennes
+        :type nom: Pandas Dataframe
+        :param df: Dataframe contenant les informations sur les consommations des moteurs
+        :type df: Pandas Dataframe
+        :param df_fleet: Dataframe contenant les informations sur les flottes des compagnies aériennes
+        :type df_fleet: Pandas Dataframe
+        :param segment: Emission totale de la compagnie ='Global', Cargo uniquement = 'Freighter', Passagers uniquement = "Passenger")
+        :type segment: string
+        '''
+    if segment == 'Global' : 
+        emission_totale = []
+        #Création d'un objet compagnie pour chaque compagnie de df_Airline 
+        for nom_compagnie in df_airline['Airline']:
+            compagnie =Airline(nom_compagnie, df_airline, df_fleet, df)
+            #Stockage des valeurs (en kg)
+            emission_totale.append(compagnie.CO2_compagnie_total/1000) 
+            
+        #Paramètre du graphique pour redimensionner les barres et permettre de faire deux graphiques en un 
+        fig, ax = plt.subplots()
+        #Graphe de la emission totale des compagnies
+        ax.barh(df_airline['Airline'], emission_totale, color = 'red',label='Emissions totale')
+        #Rennomage des axes, titres
+        ax.set_xlabel('Equivalent CO2 total émis (en kg)')
+        ax.set_ylabel('Compagnies Aériennes')
+        ax.set_title('Emission de CO2 totales de chaques compagnies en 2010')
+        #Affichage et dimensionnement du nom des compagnies 
+        ax.tick_params(axis='y', labelsize=8)
+        ax.legend()
+        plt.show()
+        
+    elif segment == 'Passenger': 
+        emission_reelle = [] 
+        emission_optimale = []
+        #Création d'un objet AirlinePassenger pour chaque compagnie de df_Airline 
+        for nom_compagnie in df_airline['Airline']:
+            compagnie =AirlinePassenger(nom_compagnie, df_airline, df_fleet, df)
+            #Stockage des valeurs (en kg)
+            emission_reelle.append(compagnie.CO2_par_passager_reel/1000)
+            emission_optimale.append(compagnie.CO2_par_passager_optimal/1000) 
+        
+        #Paramètre du graphique pour redimensionner les barres et permettre de faire deux graphiques en un 
+        bar_width = 0.35
+        bar_reel_position = np.arange(len(df_airline['Airline']))
+        bar_optimal_position = bar_reel_position+bar_width+0.02
+        
+        fig, ax = plt.subplots()
+        #Graphe de la pollution réelle par passagers
+        ax.barh(bar_reel_position, emission_reelle, height=bar_width, color = 'orange',label='Emissions réelles')
+        #Graphe de la pollution optimale (si avions pleins)
+        ax.barh(bar_optimal_position, emission_optimale, height=bar_width, color = 'green', label='Emissions optimales')
+        #Rennomage des axes, titres
+        ax.set_xlabel('Equivalent CO2 émis par passager (en kg)')
+        ax.set_ylabel('Compagnies Aériennes')
+        ax.set_title('Emission de CO2/passagers des compagnies britanniques en 2010')
+        #Affichage et dimensionnement du nom des compagnies 
+        ax.set_yticks(bar_reel_position + bar_width / 2)
+        ax.set_yticklabels(df_airline['Airline'])
+        #Affichage et dimensionnement du nom des compagnies 
+        ax.tick_params(axis='y', labelsize=8)
+        ax.legend()
+        plt.show()
+    
+    elif segment == 'Freighter': 
+        emission_cargo = []
+        liste_compagnie_cargo = []
+        #Création d'un objet AirlineFreighter pour chaque compagnie de df_Fleet car les compagnies CARGO ne sont pas référencés dans df_Airline 
+        for nom_compagnie in df_fleet['Airline'].unique():
+            compagnie =AirlineFreighter(nom_compagnie, df_airline, df_fleet, df)
+            #Stockage des emissions (en kg), et du nom des companies possédant des avions cargos
+            if compagnie.CO2_vol_cargo != 0 :  
+                emission_cargo.append(compagnie.CO2_vol_cargo/1000)
+                liste_compagnie_cargo.append(nom_compagnie)
+            
+        #Paramètre du graphique pour redimensionner les barres et permettre de faire deux graphiques en un 
+        fig, ax = plt.subplots()
+        #Graphe de la emission totale des compagnies
+        ax.barh(liste_compagnie_cargo, emission_cargo, color = 'red',label='Emissions Cargo')
+        #Rennomage des axes, titres
+        ax.set_xlabel('Equivalent CO2 total émis (en kg)')
+        ax.set_ylabel('Compagnies Aériennes')
+        ax.set_title('Emission de CO2 des vols cargo de chaques compagnies en 2010')
+        #Affichage et dimensionnement du nom des compagnies 
+        ax.tick_params(axis='y', labelsize=8)
+        ax.legend()
+        plt.show()
+    else :
+        print("Erreur: Argument 'segment' dans l'affichage des graphes comparatif de compagnies")
+        exit()
+        
+    
+             
+             
+             
+             
+             
+             
+             
+             
                     
 def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
     '''
@@ -172,7 +286,7 @@ def Comparaison_Pollution_Compagnie_Passager(df_airline,df,df_fleet):
     ax.legend()
     plt.show()
 
-def Comparaison_Pollution_Compagnie(df_airline,df,df_fleet):
+def Comparaison_Emission_Totale_Compagnie(df_airline,df,df_fleet):
     '''
         Affiche un graphique de type bar chart horizontal illustrant les émissions totales de 
         chaques compagnies aériennes étudiées. Les valeurs affichées sont en kg.
