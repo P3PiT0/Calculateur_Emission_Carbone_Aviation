@@ -1,3 +1,6 @@
+"""
+Le fichier Main est le module principal de l'application. Il permet à l'utilisateur d'exécuter l'application.
+"""
 # Importation de paquets, bibliothèques et modules
 import Modules
 #Formatage des dataframe
@@ -8,8 +11,16 @@ df_airline = Modules.Airline_Data_Reader()
 #Dataframe contenant les informations sur les flottes des différentes compagnies 
 df_fleet = Modules.Utilization_Data_Reader()
 
-#fonction d'interface utilisateur, elle lit le yaml et demande à l'utilisateur de valider ses données
+
 def interface_utilisateur():
+    """
+    Fonction d'interface utilisateur, elle lit le fichier 'Donnes.yaml' et demande à l'utilisateur de valider ses sélection de données.
+
+    Si l'utilisateur répond 'OUI', le programme passe à la prochaine étape et continue l'exécution de l'application.
+
+    Si l'utilisateur répond 'NON', le programme demande à l'utilisateur d'aller modifier ses sélections dans le fichier 'Donnes.yaml'.
+    On lui redemande ensuite de valider les sélections.
+    """
     Entrees_yaml = Modules.lecteuryamel()
     Donnees_dict = Entrees_yaml.print_content()
     if input("\n Validez-vous ces données ? (OUI/NON)") == 'OUI':
