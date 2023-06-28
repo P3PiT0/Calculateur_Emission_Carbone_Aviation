@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modules.Lecture_Calculs_Manipulations package &#8212; Calculateur_Emission_Carbone_Aviation  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Modules.InterfaceYamel package" href="Modules.InterfaceYamel.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="modules-lecture-calculs-manipulations-package">
+<h1>Modules.Lecture_Calculs_Manipulations package<a class="headerlink" href="#modules-lecture-calculs-manipulations-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-Modules.Lecture_Calculs_Manipulations.Data_Reader">
+<span id="modules-lecture-calculs-manipulations-data-reader-module"></span><h2>Modules.Lecture_Calculs_Manipulations.Data_Reader module<a class="headerlink" href="#module-Modules.Lecture_Calculs_Manipulations.Data_Reader" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Data_Reader.Airline_Data_Reader">
+<span class="sig-prename descclassname"><span class="pre">Modules.Lecture_Calculs_Manipulations.Data_Reader.</span></span><span class="sig-name descname"><span class="pre">Airline_Data_Reader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Data_Reader.Airline_Data_Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode lit les données concernant le pourcentage d’occupation des avions pour les compagnies
+aeriennes étudiées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètre(s) d’entrée<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Aucun</p>
+</dd>
+<dt class="field-even">Retourne<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tableau contenant des informations sur les compagnies aériennes</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Data_Reader.Emission_Data_Reader">
+<span class="sig-prename descclassname"><span class="pre">Modules.Lecture_Calculs_Manipulations.Data_Reader.</span></span><span class="sig-name descname"><span class="pre">Emission_Data_Reader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Data_Reader.Emission_Data_Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode lit les donnees de la banque de données de l’OACI sur les émissions des moteurs d’avion
+qui contient des informations sur les émissions de gaz d’échappement des moteurs d’avion. Par la suite
+ce cette méthode va nettoyer les données pour en faciliter l’analyse par la suite en conservant les colonnes
+désirées et en les renommant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Data_Reader.Utilization_Data_Reader">
+<span class="sig-prename descclassname"><span class="pre">Modules.Lecture_Calculs_Manipulations.Data_Reader.</span></span><span class="sig-name descname"><span class="pre">Utilization_Data_Reader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Data_Reader.Utilization_Data_Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode lit les donnees concernant les avions composant la flotte des compagnies
+aeriennes étudiées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Modules.Lecture_Calculs_Manipulations.Travel">
+<span id="modules-lecture-calculs-manipulations-travel-module"></span><h2>Modules.Lecture_Calculs_Manipulations.Travel module<a class="headerlink" href="#module-Modules.Lecture_Calculs_Manipulations.Travel" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Travel.travel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Modules.Lecture_Calculs_Manipulations.Travel.</span></span><span class="sig-name descname"><span class="pre">travel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrive_airport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depart_airport</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aircraft</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Travel.travel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>La classe ‘travel’ permet de calculer la distance de croisière d’un voyage entre deux aéroports et d’estimer les émissions de CO2 du trajet en utilisant les données sur l’avion et ses moteurs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Travel.travel.distance_croisiere">
+<span class="sig-name descname"><span class="pre">distance_croisiere</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Travel.travel.distance_croisiere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fonction qui calcule la distance de croisière du voyage.</p>
+<p>Retourne la distance de croisière du voyage en km.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Modules.Lecture_Calculs_Manipulations.Travel.travel.pollution_trajet">
+<span class="sig-name descname"><span class="pre">pollution_trajet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Modules.Lecture_Calculs_Manipulations.Travel.travel.pollution_trajet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fonction qui calcule et renvoie l’émission de CO2 du trajet en question à partir des données disponibles sur l’avion et ses moteurs</p>
+<p>Renvoie le taux d’émission de CO2 en tonnes.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Modules.Lecture_Calculs_Manipulations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Modules.Lecture_Calculs_Manipulations" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Calculateur_Emission_Carbone_Aviation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Modules.html">Modules package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="Modules.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modules.html#module-Modules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="Modules.html">Modules package</a><ul>
+      <li>Previous: <a href="Modules.InterfaceYamel.html" title="previous chapter">Modules.InterfaceYamel package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Lucas Chamaz <lucas.chamaz.1@ens.etsmtl.ca> ; Alexandre Panhaleux <alenxandre.panhaleux.1@ens.etsmtl.ca> ; Étienne Lionnet <etienne.lionnet.1@ens.etsmtl.ca> ; Gabriel Gunther <gabriel.gunther.1@ens.etsmtl.ca>.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/Modules.Lecture_Calculs_Manipulations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
