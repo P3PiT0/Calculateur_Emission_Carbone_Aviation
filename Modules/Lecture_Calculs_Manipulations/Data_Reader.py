@@ -4,9 +4,10 @@ import airportsdata
 import csv
 
 def Emission_Data_Reader (): 
-    """Cette méthode lit les donnees de la banque de données de l'OACI sur les émissions des moteurs d'avion
+    """
+    Cette méthode lit les données de la banque de données de l'OACI sur les émissions des moteurs d'avion
     qui contient des informations sur les émissions de gaz d'échappement des moteurs d'avion. Par la suite
-    ce cette méthode va nettoyer les données pour en faciliter l'analyse par la suite en conservant les colonnes
+    cette méthode va nettoyer les données pour en faciliter l'analyse en conservant les colonnes
     désirées et en les renommant.
     
     :return: pandas dataframe
@@ -35,6 +36,8 @@ def Emission_Data_Reader ():
     return df
 
 '''
+Cette fonction est là à titre indicatif. C'est elle qui nous a permis de générer la liste des aéroports
+
 def Airport_Data_Reader():
     """Cette méthode lit les données du module airportsdata et récupère la latitude et la longitude et 
     le code iata des aeroports anglais. Par la suite on va renvoyer ce dictionnaire contenant la latitude,
@@ -55,11 +58,11 @@ def Airport_Data_Reader():
     return airports_gb
 '''
 
-
-
 def Airline_Data_Reader():
-    """Cette méthode lit les données concernant le pourcentage d'occupation des avions pour les compagnies
-    aeriennes étudiées.
+    """
+    Cette méthode lit les données concernant le pourcentage d'occupation des avions ainsi que le nombre de passagers
+    des différentes compagnies aeriennes étudiées. 
+    Par la suite cette méthode va nettoyer les données pour en faciliter l'analyse en conservant les colonnes désirées et en les renommant.
 
     :return: pandas dataframe
     """
@@ -77,8 +80,10 @@ def Airline_Data_Reader():
     return df
 
 def Utilization_Data_Reader():
-    """Cette méthode lit les donnees concernant les avions composant la flotte des compagnies
-    aeriennes étudiées.
+    """
+    Cette fonction lit les données concernant les avions composant la flotte des compagnies
+    aeriennes étudiées et les informations sur leur utilisation.
+    Par la suite cette méthode va nettoyer les données pour en faciliter l'analyse en conservant les colonnes désirées et en les renommant.
 
     :return: pandas dataframe
     """
@@ -93,7 +98,6 @@ def Utilization_Data_Reader():
 
     # Conversion des colonnes numériques en float
     df[['Days','TotalHours']] = df[['Days','TotalHours']].astype(float)
-
 
     # Retourne le dataframe (contenant les données moteur) modifié et prêt à être exploité
     return df
