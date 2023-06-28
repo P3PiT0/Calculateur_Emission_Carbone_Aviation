@@ -154,9 +154,3 @@ class Airliner(Aircraft):
             print(f"L'objet Airliner créé n'est pas un avion de ligne ou n'est pas renseigné dans le dictionnaire")
             exit()
     
-    
-            
-
-        
-        
- 
