@@ -1,12 +1,10 @@
 # Calculateur_Emission_Carbone_Aviation
- Cette application Python à pour but de proposer un outil développé en Python permettant de sélectionner un vol aérien en 
- fonction des émissions de carbones engendrés par la compagnie aérienne, l'avion choisie et les destinations de départ 
- et d'arrivée choisie.
+ Cette application Python a pour but de proposer un outil développé en Python permettant de calculer l'émpreinte carbone de différentes compagnies aériennes ou les émissions d'un avions sur un trajet entre deux aéroports choisis.
 
- Ce projet a été développé sous forme d'application pouvant être facilement installée et désintallée de l'ordinateur du client.
+ Ce projet a été développé sous forme d'application modulable pouvant être facilement installée et désintallée localement. 
 
 ## Contenu du paquet 
-Le paquet est composé de XX dossiers et fichiers distinct :
+Le paquet est composé de 11 dossiers et fichiers distincts :
 1. build :
 2. Data
 3. Documentation (À effacer?)
@@ -25,31 +23,29 @@ les instructions d'opération
 ## Notice d'utilisation
 ### Installation 
 1. Téléchargez le dossier compressé contenant l'application sur votre ordinateur.
-2. Extraire le dossier compressé
+2. Extraire le dossier compressé.
 3. Sur votre logiciel de préférence supportant Python, ouvrez le dossier principal de l'application.
-4. Ouvrez le dossier où se situe le fichier 'setup.py'
-5. Dans le terminal de votre logiciel, exécuter le fichier 'setup.py' à l'aide de la commande: python setup.py install
+4. Ouvrez le dossier où se situe le fichier 'setup.py'.
+5. Dans le terminal de votre logiciel, exécuter le fichier 'setup.py' à l'aide de la commande: `python setup.py install`.
 6. L'application est maintenant prête à être utilisée.
-7. Ouvrez une invite de commande ou un terminal et se rendre dans le répertoire de travail ou se trouve le.py et le gcode.
-8. Exécutez le programme 
+7. Ouvrez une invite de commande ou un terminal et se rendre dans le répertoire de travail ou se trouve le fichier main.py.
+8. Exécutez le programme .
 
 ### Avant d'exécuter l'application
-1. Avant d'exécuter l'application assurez-vous d'avoir fait vos sélections dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'
+Avant d'exécuter l'application, assurez-vous d'avoir fait vos sélections dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'. Ce fichier regroupe les différents paramètres utilisateurs.
 
 ### Exécution de l'application
-1. Pour exécuter l'application, ouvrez et exécutr le fichier 'Main.py'
+Pour exécuter l'application, ouvrez et exécutez le fichier 'Main.py'.
 
 ### Modification du code par l'utilisateur
-La seule modification nécessaire du code  fait par l'utilisateur, est la sélection des choix et paramètres dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'
-
+La seule modification nécessaire du code fait par l'utilisateur, est la sélection des choix et paramètres dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'.
 
 ## Modules, classes, méthodes et fonctions utilisées:
-Tous les modules employés dans cette application ce retrouvent dans le dossier "Modules". Les modules sont regroupés dans des sous-dossiers.
-Chacuns de ces sous-dossiers contient un script '__init__' qui est la méthode constructeur pour créé la classe. Le dossier principal 'Modules' contient lui aussi un script "__init__" qui importe les 3 modules créés.
-### 1. Module Avion
-### 1.1. Classe Aircraft
-La classe "Aircraft" représente un avion. Voici un résumé des principales fonctionnalités du code :
+Tous les modules employés dans cette application se retrouvent dans le dossier "Modules". Les modules sont regroupés dans des sous-dossiers. A noter que des informations supplémentaires sont disponibles dans la documentation sphinx. 
 
+### 1. Module Avion
+#### 1.1. Classe Aircraft
+La classe "Aircraft" représente un avion. Voici un résumé des principales fonctionnalités du code :
 
 La classe "Aircraft" est définie avec un constructeur "init" qui initialise les attributs spécifiques à un avion, tels que le modèle de moteur associé à l'avion, le nombre de moteurs, la vitesse de croisière, le nombre de places passager, l'altitude de croisière, et la consommation de carburant de l'avion pendant les phases LTO (décollage, atterrissage et montée) et de croisière.
 
@@ -157,8 +153,24 @@ La méthode pollution_trajet calcule et renvoie les émissions de CO2 du trajet 
 
 En résumé, le script représente une classe travel qui permet de calculer la distance de croisière d'un voyage entre deux aéroports et d'estimer les émissions de CO2 du trajet en utilisant les données sur l'avion et ses moteurs.
 
-## Ressources utilisées
+## Pour les utilisateurs : 
 
+## Pour les développeur :
+Le code est développer de façon modulaire et sous forme de programmation orientée objet. Il est ainsi plus facile d'apporter des modifications au code. 
+ 
+### Améliorations potentielles 
+- L'une des principale amélioration possible est d'abord de trouver une base de donnée plus exhaustive, notamment concernant les compagnies aériennes. En effet, lors de notre développement nous nous sommes contenté de mettre au point des fonctionnalités pour exploiter notre dataset restreint.
+- Afin de simplifier l'implémentation, nous avons traité les informations des avions manuellement (modèle de moteurs unique, mach de croisière, passager etc...). Il peut être intéressant de trouver une autre base de donnée contenant ces informations, et ne pas limiter un modèle d'avion à un seul moteur. 
+- Dans le cas ou un avion/moteur/compagnie n'est pas dans notre base de donnée, il peut être intéressant d'inviter l'utilisateur à saisir les informations manquantes. 
+- Les calculs sont également fait à partir d'estimation (distance de trajet, ne prends pas en compte le vent, la rotation de la terre, etc...). Ces facteurs peuvent être pris en considération pour obtenir des données plus précises.
+
+## Ressources utilisées
+### Données :
+1. Base de donnée sur les compagnies aériennes britanniques (nécessite de créer un compte démo): https://data.icao.int/newDataPlus/Tools (consulté le 2/06/2023).
+2. Base de donnée contenant les informations sur les différents moteurs : https://www.easa.europa.eu/en/domains/environment/easa-aeroplane-co2-emissions-database-0 (consulté le 2/06/2023).
+### Packages pythons:
+1. Package permettant d'obtenir les coordonnées des aéroports : https://pypi.org/project/airportsdata/
+2. Package permettant d'obtenir les informations sur les conditions atmosphériques : https://pypi.org/project/ambiance/
 
 ## Références
 1. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Programmation Orientée Objet: Classes et Objets*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 43 p.
