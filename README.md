@@ -1,5 +1,5 @@
 # Calculateur_Emission_Carbone_Aviation
- Cette application Python a pour but de proposer un outil développé en Python permettant de calculer l'émpreinte carbone de différentes compagnies aériennes ou les émissions d'un avions sur un trajet entre deux aéroports choisis.
+ Cette application a pour but de proposer un outil développé en Python permettant de calculer l'émpreinte carbone de différentes compagnies aériennes ou les émissions d'un avions sur un trajet entre deux aéroports choisis.
 
  Ce projet a été développé sous forme d'application modulable pouvant être facilement installée et désintallée localement. 
 
@@ -45,65 +45,67 @@ Tous les modules employés dans cette application se retrouvent dans le dossier 
 
 ### 1. Module Avion
 #### 1.1. Classe Aircraft
-La classe "Aircraft" représente un avion. Voici un résumé des principales fonctionnalités du code :
+Ce code représente plusieurs classes liées à la modélisation d'avions. Voici une description de chaque classe :
 
-La classe "Aircraft" est définie avec un constructeur "init" qui initialise les attributs spécifiques à un avion, tels que le modèle de moteur associé à l'avion, le nombre de moteurs, la vitesse de croisière, le nombre de places passager, l'altitude de croisière, et la consommation de carburant de l'avion pendant les phases LTO (décollage, atterrissage et montée) et de croisière.
+La classe __Aircraft__ représente un avion. Elle possède les attributs suivants :
 
-La classe contient plusieurs méthodes pour effectuer des calculs liés à l'avion, notamment la consommation de carburant de l'avion pendant les phases LTO et de croisière, et la vitesse de croisière de l'avion.
+1. moteur: un objet de la classe Moteur qui représente le moteur associé à l'avion.
+2. nombre_moteur: le nombre de moteurs sur l'avion.
+3. vitesse_croisiere: la vitesse de croisière de l'avion en mètres par seconde.
+4. altitude_croisiere: l'altitude de croisière de l'avion en mètres.
+5. consommation_moteur_LTO: la consommation du moteur de l'avion pendant la phase LTO (Landing, Take Off) en grammes.
+5. consommation_moteur_cruise: la consommation du moteur de l'avion pendant la phase de croisière en grammes par seconde.
 
-La méthode "Consommation_Avion" calcule la masse de CO2 émise pendant la phase de croisière de l'avion en utilisant la consommation des moteurs associés à l'avion et en multipliant par le nombre de moteurs. Elle retourne la masse de CO2 émise pendant la phase LTO et le taux d'émission de CO2 pendant la phase de croisière.
+La classe __Aircraft__ possède également deux méthodes :
 
-La méthode "Vitesse_croisière" calcule la vitesse de croisière de l'avion en utilisant le modèle de l'avion et le nombre de mach de croisière. Elle crée un objet "Atmosphere" pour obtenir les données atmosphériques à l'altitude de croisière de l'avion, puis calcule la vitesse de croisière en utilisant la vitesse du son à cette altitude et le nombre de mach de croisière.
+__Emission_Avion()__: retourne la masse de gaz rejeté en équivalent carbone pendant la phase de croisière de l'avion en grammes par seconde et la masse rejetée pendant la phase LTO en grammes.
 
-En résumé, le code définit une classe "Aircraft" avec des méthodes pour effectuer des calculs liés aux informations de l'avion, notamment la consommation de carburant et la vitesse de croisière, en utilisant les données spécifiques de l'avion et les données du moteur associé.
+__Vitesse_croisière(modele)__: retourne la vitesse de croisière de l'avion en mètres par seconde en fonction de son mach de croisière et de son altitude de croisière.
+
+La classe __Freighter__ représente un avion transportant des marchandises. Elle hérite de la classe Aircraft et ajoute l'attribut 'payload' qui représente la capacité de transport de l'avion en livres.
+
+La classe __Airliner__ représente un avion transportant des passagers. Elle hérite également de la classe Aircraft et ajoute l'attribut 'nombre_passager' qui représente le nombre de places passagers dans l'avion.
+
+Ces classes utilisent un dictionnaire appelé 'correspondance_avions_moteurs' pour récupérer les informations sur les avions et leurs moteurs à partir du modèle de l'avion. De plus, elles utilisent un dataframe 'df_engine' contenant des informations sur tous les moteurs.
+
+Ces classes permettent de modéliser différentes caractéristiques des avions, telles que leur moteur, leur vitesse de croisière, leur altitude de croisière, leur consommation de carburant, leur capacité de transport (pour les avions de fret), et le nombre de places passagers (pour les avions de ligne).
 
 ### 1.2. Classe Airline
-Cette classe représente une compagnie aérienne et contient plusieurs méthodes pour analyser les données de la compagnie.
 
-Le constructeur de la classe "Airline" prend en paramètres le nom de la compagnie, ainsi que trois DataFrames 
-("df_airline", "df_fleet" et "df") contenant des informations sur les compagnies aériennes, les flottes et les 
-consommations des moteurs respectivement.
+Ce code est une implémentation d'un modèle de simulation pour analyser les émissions de CO2 des compagnies aériennes. Il utilise des données sur les compagnies aériennes, les flottes d'avions, et les émissions des moteurs.
 
-La méthode "init" initialise les attributs de la classe en récupérant les informations spécifiques à la compagnie à 
-partir des DataFrames fournis en entrés. Elle extrait les informations sur la compagnie, la flotte, le facteur de charge,
-le nombre total de passagers, le nombre total d'heures de vol, la répartition de la flotte et calcule les émissions 
-totales de CO2 de la compagnie.
+La classe principale est "__Airline__", qui représente une compagnie aérienne composée d'une flotte d'avions. Elle possède un attribut compagnie pour stocker le nom de la compagnie. Le constructeur de cette classe prend en paramètre les informations sur la compagnie (nom, données sur la compagnie, la flotte, et les émissions des moteurs).
 
-La méthode "CO2_total_compagnie" calcule les quantités de CO2 émises par la compagnie, en distinguant les avions de 
-transport cargo et les avions de transport de passagers. Elle utilise les informations sur la consommation des moteurs 
-pour calculer les émissions de CO2 pour les phases de LTO (Takeoff and Landing Cycle) et de croisière. Les émissions sont 
-calculées en fonction du nombre de jours de vol et du nombre d'heures de vol total de la flotte.
+La méthode "__CO2_total_compagnie calcule__" les émissions totales de CO2 de la compagnie en fonction du segment spécifié (global, passager ou cargo). Elle itère sur les avions de la flotte de la compagnie et utilise la classe Aircraft pour obtenir les données de consommation des moteurs et calculer les émissions.
 
-La méthode "Repartition_Utilisation_Flotte" affiche un graphique en secteurs (pie chart) illustrant la répartition de l'utilisation de chaque modèle d'avion par rapport au temps de vol total de la compagnie.
+La méthode "__Repartition_Utilisation_Flotte__" affiche un graphique de type "pie chart" qui représente la répartition de l'utilisation de chaque modèle d'avion par rapport au temps de vol total de la compagnie.
 
-La méthode "CO2_total_par_passager" calcule les quantités de CO2 émises par passager, à la fois de manière réelle (en prenant en compte le facteur de charge) et optimale (en considérant un taux de remplissage de 100%). Les émissions sont calculées en fonction des émissions totales de CO2 de la compagnie et du nombre total de passagers.
+La méthode "__Repartition_Emission_Type_Vol__" affiche un graphique de type "pie chart" qui illustre la répartition des émissions de CO2 de la compagnie entre le transport de marchandises et le transport de passagers.
 
-La méthode "Repartition_Emission_Type_Vol" affiche un graphique en secteurs (pie chart) illustrant la répartition des émissions de CO2 de la compagnie entre le transport de marchandises et le transport de passagers.
+Les classes "__AirlineFreighter__" et "__AirlinePassenger__" héritent de la classe Airline et représentent les segments de cargo et de passagers d'une compagnie aérienne respectivement. Elles utilisent des méthodes spécifiques pour calculer les émissions de CO2 liées à chaque segment.
 
-La fonction "Comparaison_Pollution_Compagnie_Passager" prend en paramètres les DataFrames contenant les informations sur les compagnies aériennes, les consommations des moteurs et les flottes. Elle crée des objets "Airline" pour chaque compagnie aérienne et affiche un graphique en barres (bar chart) horizontal comparant les émissions de CO2 par passager réelles et optimales pour chaque compagnie.
+Enfin, la fonction "__Comparaison_Emission_Compagnie__" utilise les classes Airline, AirlineFreighter et AirlinePassenger pour générer des graphiques de comparaison des émissions de CO2 entre les différentes compagnies aériennes et les segments (global, cargo, passagers).
 
-La fonction "Comparaison_Pollution_Compagnie" fait la même chose que la fonction précédente, mais elle compare les émissions totales de CO2 de chaque compagnie.
-
-Ces méthodes et fonctions permettent d'analyser les émissions de CO2 des compagnies aériennes et de visualiser les données à l'aide de graphiques.
 
 ### 1.3. Classe Moteur
-La classe 'Moteur' est établie dans le module 'Engine'. Elle représente un moteur d'avion. Voici un résumé des principales fonctionnalités du code :
 
-Le code commence par importer le module pandas sous l'alias "pd".
+Ce code définit une classe appelée "__Moteur__" qui représente un moteur d'avion et permet de calculer ses émissions de CO2. Voici un résumé du code :
 
-Ensuite, la classe "Moteur" est définie avec un constructeur "init" qui initialise les attributs spécifiques à un moteur d'avion, tels que le modèle du moteur et les données du moteur à partir d'un DataFrame global.
+La classe "__Moteur représente__" un moteur d'avion et contient plusieurs méthodes pour effectuer des calculs liés aux émissions de CO2.
 
-La classe contient plusieurs méthodes pour effectuer des calculs liés aux émissions de CO2 du moteur et aux conversions de gaz en équivalents de CO2.
+Le constructeur __init__ prend deux paramètres : "__modele__" (le modèle du moteur) et "__df_engine__" (un DataFrame contenant les informations de tous les moteurs).
+Dans le constructeur, les attributs de l'objet moteur sont initialisés en utilisant les informations du DataFrame df_engine.
 
-La méthode "Conversion_Equivalent_Carbone" prend en paramètre les taux de différents gaz (HC, CO, NOx) et retourne une liste des taux équivalents en CO2 en fonction de leur potentiel de réchauffement global (PRG) sur 100 ans.
+La méthode "__Conversion_Equivalent_Carbone__" convertit les taux de différents gaz (HC, CO, NOx) en équivalent CO2 en utilisant les PRG (Potentiel Réchauffement Global) de chaque gaz.
 
-La méthode "Equivalent_Carbone_LTO" calcule la masse de CO2 émise pendant la phase de décollage, d'atterrissage et de montée du moteur (LTO) en utilisant les données spécifiques du moteur et la méthode de conversion en équivalent carbone.
+La méthode "__Equivalent_Carbone_LTO__" calcule la masse de CO2 émise pendant la phase LTO (décollage, atterrissage et montée) du moteur.
 
-La méthode "Taux_Carbone_Cruise" calcule le taux d'émission de CO2 pendant la phase de croisière du moteur en grammes par kilogramme de kérosène consommé.
+La méthode "__Taux_Carbone_Cruise__" calcule le taux d'équivalent CO2 rejeté pendant la phase de croisière du moteur (en g/kg de kérosène consommé).
 
-La méthode "Equivalent_CarboneParSeconde_Cruise" calcule la masse de CO2 émise par seconde pendant la phase de croisière du moteur en utilisant le taux d'émission de CO2 et la consommation de carburant du moteur.
+La méthode "__Equivalent_CarboneParSeconde_Cruise__" calcule la masse de CO2 émise par seconde pendant la phase de croisière du moteur (en g/s).
 
-En résumé, le code définit une classe "Moteur" avec des méthodes pour effectuer des calculs et des conversions liés aux émissions de CO2 d'un moteur d'avion, en se basant sur les données spécifiques du moteur fournies dans un DataFrame.
+En cas d'erreur (par exemple, si le modèle du moteur n'est pas présent dans le DataFrame), un message d'erreur est affiché et le code s'arrête.
+Le code utilise également le module Pandas pour manipuler les données sous forme de DataFrame.
 
 ### 2. Module InterfaceYaml
 ### 2.1. Classe Lecteuryaml
@@ -120,38 +122,34 @@ En résumé, le code définit une classe "lecteuryamel" pour lire et afficher le
 
 ### 3. Module Lecture_Calcus_Manipulations
 ### 3.1. Script Data_Reader
-Le code fourni comprend trois fonctions distinctes pour lire et traiter différentes données liées aux émissions d'avions, aux compagnies aériennes et à l'utilisation de la flotte. Voici un résumé des principales fonctionnalités de chaque fonction :
+Ce code contient trois fonctions de lecture des données :
 
-La fonction Emission_Data_Reader lit les données de la banque de données de l'OACI sur les émissions des moteurs d'avion à partir d'un fichier CSV.
-Elle sélectionne les colonnes pertinentes et les renomme pour faciliter l'utilisation des données.
-Les moteurs hors service sont supprimés du dataframe.
-Les duplications basées sur le modèle de moteur sont supprimées, en conservant uniquement la première occurrence.
-Les colonnes numériques du dataframe sont converties en type float.
-Finalement, le dataframe modifié est retourné.
+La fonction "__Emission_Data_Reader__" lit les données de la banque de données de l'OACI sur les émissions des moteurs d'avion. Elle charge un fichier CSV contenant des informations sur les émissions de gaz d'échappement des moteurs d'avion, nettoie les données en sélectionnant les colonnes pertinentes et en les renommant, supprime les moteurs dont le statut est "Out of service", supprime les doublons basés sur le modèle de moteur, convertit certaines colonnes en type float et retourne un dataframe Pandas contenant les données moteur modifiées et prêtes à être exploitées.
 
-Fonction Airline_Data_Reader lit les données sur le pourcentage d'occupation des avions pour les compagnies aériennes à partir d'un fichier CSV.
-Elle sélectionne les colonnes pertinentes et les renomme.
-Le dataframe modifié est retourné.
+La fonction "__Airline_Data_Reader__" lit les données concernant le pourcentage d'occupation des avions et le nombre de passagers des différentes compagnies aériennes étudiées. Elle charge un fichier CSV contenant ces informations, sélectionne les colonnes pertinentes et les renomme, puis retourne un dataframe Pandas contenant les données modifiées et prêtes à être exploitées.
 
-Fonction Utilization_Data_Reader lit les données sur l'utilisation de la flotte des compagnies aériennes à partir d'un fichier CSV.
-Elle sélectionne les colonnes pertinentes et les renomme.
-Les colonnes numériques du dataframe sont converties en type float.
-Finalement, le dataframe modifié est retourné.
+La fonction "__Utilization_Data_Reader__" lit les données concernant les avions composant la flotte des compagnies aériennes étudiées et les informations sur leur utilisation. Elle charge un fichier CSV contenant ces informations, sélectionne les colonnes pertinentes et les renomme, convertit certaines colonnes en type float, puis retourne un dataframe Pandas contenant les données modifiées et prêtes à être exploitées.
 
-En résumé, les trois fonctions fournissent des mécanismes pour lire et prétraiter différentes données liées aux émissions d'avions, aux compagnies aériennes et à l'utilisation de la flotte
+Il y a également un commentaire pour une fonction supplémentaire "__Airport_Data_Reader__" qui n'est pas implémentée dans le code. Cette fonction était destinée à lire les données du module airportsdata et à récupérer les informations sur les aéroports anglais, mais elle est actuellement commentée.
 
 ### 3.2. Classe Travel
-La classe 'travel' permet de calculer la distance de croisière d'un voyage entre deux aéroports et d'estimer les émissions de CO2 du trajet en utilisant les données sur l'avion et ses moteurs.
+Ce code définit une classe appelée "__Travel__" qui représente un voyage entre deux aéroports pour un avion donné. Voici un résumé du code :
 
-Le chargement des données est effectué en utilisant le paquet Pytohn 'airportsdata', afin d'obtenir des informations sur les aéroports, ainsi que la méthode 'Emission_Data_Reader' du module 'Data_Reader' pour lire les données sur les émissions de gaz à effet de serre et stocker ces données dans le dataframe df.
+Le code importe les modules nécessaires, y compris airportsdata, math, Airliner (une classe définie dans un autre module) et Data_Reader (un module contenant une fonction Emission_Data_Reader).
+Il charge les données des aéroports et des émissions de gaz à effet de serre à partir de fichiers.
+La classe Travel représente un voyage entre deux aéroports pour un avion spécifié.
+Le constructeur __init__ prend trois paramètres en entrée : 
+1. "__arrivee_airport__" (le code IATA de l'aéroport d'arrivée)
+2. "__depart_airport__" (le code IATA de l'aéroport de départ)
+3. "__aircraft__" (le modèle de l'avion réalisant le vol)
 
-La classe travel contient une fonction d'initialisation __init__ qui initialise les attributs de la classe avec les codes IATA des aéroports d'arrivée et de départ, ainsi qu'un objet Aircraft qui représente l'avion utilisé pour le vol.
+Dans le constructeur, les attributs de l'objet Travel sont initialisés avec les valeurs passées en paramètre.
 
-La méthode distance_croisiere calcule la distance de croisière du voyage en utilisant les latitudes et longitudes des aéroports. La distance est retournée en kilomètres.
+La méthode "__distance_croisiere__" calcule la distance de vol en croisière du voyage en utilisant les latitudes et longitudes des aéroports.
 
-La méthode pollution_trajet calcule et renvoie les émissions de CO2 du trajet en utilisant les données disponibles sur l'avion et ses moteurs. Les émissions sont retournées en tonnes de CO2.
+La méthode "__pollution_trajet__" calcule et renvoie l'émission de CO2 du trajet en utilisant les données disponibles sur l'avion et ses moteurs. L'émission est renvoyée en tonnes de CO2.
 
-En résumé, le script représente une classe travel qui permet de calculer la distance de croisière d'un voyage entre deux aéroports et d'estimer les émissions de CO2 du trajet en utilisant les données sur l'avion et ses moteurs.
+Le code utilise également des fonctions et des constantes mathématiques du module math pour effectuer les calculs géographiques et mathématiques nécessaires.
 
 ## Pour les utilisateurs : 
 
@@ -168,9 +166,9 @@ Le code est développer de façon modulaire et sous forme de programmation orien
 ### Données :
 1. Base de donnée sur les compagnies aériennes britanniques (nécessite de créer un compte démo): https://data.icao.int/newDataPlus/Tools (consulté le 2/06/2023).
 2. Base de donnée contenant les informations sur les différents moteurs : https://www.easa.europa.eu/en/domains/environment/easa-aeroplane-co2-emissions-database-0 (consulté le 2/06/2023).
-### Packages pythons:
-1. Package permettant d'obtenir les coordonnées des aéroports : https://pypi.org/project/airportsdata/
-2. Package permettant d'obtenir les informations sur les conditions atmosphériques : https://pypi.org/project/ambiance/
+### Paquets pythons:
+1. __airportsdata__ : Package permettant d'obtenir les coordonnées des aéroports : https://pypi.org/project/airportsdata/
+2. __Package__ : permettant d'obtenir les informations sur les conditions atmosphériques : https://pypi.org/project/ambiance/
 
 ## Références
 1. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Programmation Orientée Objet: Classes et Objets*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 43 p.

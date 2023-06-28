@@ -1,3 +1,4 @@
+# Importation de paquets, bibliothèques et modules
 import pandas as pd
 
 class Moteur(): 

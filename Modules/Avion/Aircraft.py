@@ -1,4 +1,5 @@
-from . import Engine 
+# Importation de paquets, bibliothèques et modules
+from . import Engine
 from ambiance import Atmosphere
 
 #Table de correspondance associant à chaque avion un modèle de moteur, le nombre de moteur installé sur cet avion et l'altitude de croisière

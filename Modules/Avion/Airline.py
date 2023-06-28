@@ -1,3 +1,4 @@
+# Importation de paquets, bibliothèques et modules
 from . import Aircraft
 import matplotlib.pyplot as plt
 import numpy as np
