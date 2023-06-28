@@ -45,28 +45,30 @@ correspondance_avions_moteurs = {
     'EMBRAER EMB135': ('AE3007A', 2, 37000, 0.77, 37, '')}
 
 class Aircraft():
-
+    '''
+    Classe représentant un avion.
+    '''
     #Constructeur 
-    def __init__(self,modele,df_global):
-        '''Constructeur pour initialisation des informations de notre avion à  partir du modele entrée et 
-        du dictionnaire 
+    def __init__(self,modele,df_engine):
+        '''Constructeur pour initialisation des informations de notre avion à partir du modèle entrée et 
+        du dictionnaire de correspondance. 
         
         :param modele: Modele de l'avion 
         :type modele: string
-        :param df_global: Dataframe contenant les informations de tous les moteurs
-        :type constructeur: Pandas Dataframe
+        :param df_engine: Dataframe contenant les informations de tous les moteurs
+        :type df_engine: Pandas Dataframe
         '''
         try: 
             #Modele de moteur associé à notre avion
-            self.moteur = moteur = Engine.Moteur(correspondance_avions_moteurs[modele][0], df_global)
+            self.moteur = Engine.Moteur(correspondance_avions_moteurs[modele][0], df_engine)
             #Nombre de moteurs sur notre avion
             self.nombre_moteur = correspondance_avions_moteurs[modele][1]
             #Vitesse de croisiere de l'avion
-            self.vitesse_croisiere = self.Vitesse_croisière(modele,correspondance_avions_moteurs[modele][3])
+            self.vitesse_croisiere = self.Vitesse_croisière(modele)
             #Altitude de croisière en m (initialement en ft)
             self.altitude_croisiere = correspondance_avions_moteurs[modele][2]/3.28 
             #Consommation de l'avion pour la phase LTO (g) et Croisière (g/s) 
-            self.consommation_moteur_LTO, self.consommation_moteur_cruise = self.Consommation_Avion(df_global)
+            self.consommation_moteur_LTO, self.consommation_moteur_cruise = self.Emission_Avion()
  
         except KeyError:
             #Met fin au code si le modèle de l'avion est mal orthographié ou absent de notre base de donnée 
@@ -74,79 +76,82 @@ class Aircraft():
             exit()
 
     #Méthodes          
-    def Consommation_Avion(self,df_global): 
+    def Emission_Avion(self): 
         '''
-        Retourne la masse rejeté en équivalent carbone pendant la phase de croisière de l'avion 
-        en gramme par seconde (g/s) ainsi que la masse rejeté durant la phase LTO en gramme (g).
+        Retourne la masse de gaz rejeté en équivalent carbone pendant la phase de croisière de l'avion 
+        en gramme par seconde (g/s) ainsi que la masse rejeté durant la phase LTO (Landing, Take Off) en gramme (g).
         Pour se faire, on calcul la consommation des moteurs et on multiplie par le nombre de moteurs.  
         
-        :param df_global: Dataframe contenant les informations de tous les moteurs
-        :type constructeur: Pandas Dataframe
         :return: Masse équivalente de CO2 lors de la phase LTO et taux en g/s lors de la phase de croisière.
         :rtype: float
         '''
-        moteur = self.moteur
-        taux_rejet_avion_cruise = self.nombre_moteur * moteur.Equivalent_CarboneParSeconde_Cruise()
-        rejet_avion_LTO = self.nombre_moteur * moteur.Equivalent_Carbone_LTO()
+        #Taux de la phase de croisière
+        taux_rejet_avion_cruise = self.nombre_moteur * self.moteur.Equivalent_CarboneParSeconde_Cruise()
+        #Masse de la phase LTO 
+        rejet_avion_LTO = self.nombre_moteur * self.moteur.Equivalent_Carbone_LTO()
         return rejet_avion_LTO, taux_rejet_avion_cruise 
     
-    def Vitesse_croisière(self,modele,mach):
+    def Vitesse_croisière(self,modele):
         '''
-        Retourne la masse rejeté en équivalent carbone pendant la phase de croisière de l'avion 
-        en gramme par seconde (g/s) ainsi que la masse rejeté durant la phase LTO en gramme (g).
-        Pour se faire, on calcul la consommation des moteurs et on multiplie par le nombre de moteurs.  
+        Retourne la vitesse de croisière de l'avion en m/s en fonction de son mach de croisière et de son altitude de croisière.  
         
         :param modele: Modele de l'avion 
         :type modele: string
-        :param mach: mach de croisière de l'avion 
-        :type modele: float
         :return: vitesse de croisière de l'avion en m/s
         :rtype: float
         '''
-        
         #On créé un objet atmosphère à l'altitude de croisière de l'avion
         atmosphere = Atmosphere(correspondance_avions_moteurs[modele][2])
         #Retourne la vitesse du son à l'altitude choisie (m/s)
         vitesse_son = atmosphere.speed_of_sound
         #Calcul de la vitesse de croisière grâce au mach de croisière (m/s)
-        vitesse_croisiere = mach*vitesse_son
+        vitesse_croisiere = correspondance_avions_moteurs[modele][3]*vitesse_son
         return round(float(vitesse_croisiere),2)
    
 class Freighter(Aircraft): 
-    def __init__(self, modele, df_global):
-        '''Constructeur pour initialisation des informations de notre avion Cargo à partir du modele entrée et 
+    '''
+    Classe représentant un avion transportant des marchandises.
+    Cette classe hérite de la classe Aircraft.
+    '''
+    def __init__(self, modele, df_engine):
+        '''Constructeur pour initialisation des informations de notre avion Cargo à partir du modèle entrée et 
         du dictionnaire. On réutilise le constructeur de la super classe.
         
         :param modele: Modele de l'avion 
         :type modele: string
-        :param df_global: Dataframe contenant les informations de tous les moteurs
-        :type constructeur: Pandas Dataframe
+        :param df_engine: Dataframe contenant les informations de tous les moteurs
+        :type df_engine: Pandas Dataframe
         '''
-        super().__init__(modele, df_global)
+        super().__init__(modele, df_engine)
         try:
-            #capacité de transport en lb de l'avion cargo
+            #Capacité de transport en lb de l'avion cargo
             self.payload = float(correspondance_avions_moteurs[modele][5])
         except ValueError : 
+            #Si l'avion créé n'est pas un avion de fret 
             print(f"L'objet Freighter créé n'est pas un avion cargo ou n'est pas renseigné dans le dictionnaire")
             exit()
             
-
 class Airliner(Aircraft): 
-    def __init__(self, modele, df_global):
+    '''
+    Classe représentant un avion transportant des passagers.
+    Cette classe hérite de la classe Aircraft.
+    '''
+    def __init__(self, modele, df_engine):
         '''Constructeur pour initialisation des informations de notre avion de ligne à partir du modele entrée et 
         du dictionnaire. On réutilise le constructeur de la super classe.
         
         :param modele: Modele de l'avion 
         :type modele: string
-        :param df_global: Dataframe contenant les informations de tous les moteurs
-        :type constructeur: Pandas Dataframe
+        :param df_engine: Dataframe contenant les informations de tous les moteurs
+        :type df_engine: Pandas Dataframe
         '''
-        super().__init__(modele, df_global)
+        super().__init__(modele, df_engine)
         try: 
-            #nombre de places passager dans l'avion
+            #Nombre de places passager dans l'avion
             self.nombre_passager = correspondance_avions_moteurs[modele][4]
         except ValueError : 
-            print(f"L'objet Freighter créé n'est pas un avion de ligne ou n'est pas renseigné dans le dictionnaire")
+            #Si l'avion créé n'est pas un avion de ligne 
+            print(f"L'objet Airliner créé n'est pas un avion de ligne ou n'est pas renseigné dans le dictionnaire")
             exit()
     
     

@@ -7,14 +7,15 @@ from . import Data_Reader
 airports = airportsdata.load('IATA')
 df= Data_Reader.Emission_Data_Reader()
 
-class travel():
+class Travel():
     '''
-    Docstring
+    Classe représentant un voyage entre deux aéroports pour un avion donnée.
     '''
+    #Constructeur
     def __init__(self, arrivee_airport, depart_airport, aircraft):
-        '''Fonction d'initialisation de la classe travel, qui contient trois attributs (le code iata des 
+        '''Constructeur de la classe Travel, contenant trois attributs (le code IATA des 
         aéroports d'arrivée et de départ du voyage ainsi que le modèle de l'avion réalisant le vol). 
-        A noter que l'avion doit être un avion de ligne, transportant des passagers
+        A noter que l'avion doit être un avion de ligne, transportant des passagers. 
         
         :param aircraft: Modele de l'avion 
         :type aircraft: string
@@ -32,13 +33,13 @@ class travel():
     def distance_croisiere(self):
         '''
         Fonction qui calcule la distance de vol en croisière du voyage en km
-        :return: distance de croisière en kilomètres .
+        
+        :return: distance de croisière en kilomètres (km).
         :rtype: float.
         '''    
         #Calculs de latitude et longitude des aéroports en radian
         lat1 = airports[self.depart_airport]['lat']*mt.pi/180
         lon1 = airports[self.depart_airport]['lon']*mt.pi/180
-
         lat2 = airports[self.arrivee_airport]['lat']*mt.pi/180
         lon2 = airports[self.arrivee_airport]['lon']*mt.pi/180
 

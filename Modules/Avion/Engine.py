@@ -1,22 +1,24 @@
 import pandas as pd
 
 class Moteur(): 
-
+    '''
+    Classe représentant un moteur d'avion permettant notamment de calculer ses émissions.
+    '''
     #Constructeur 
-    def __init__(self,modele,df_global):
+    def __init__(self,modele,df_engine):
         '''
         Constructeur pour initialisation du modèle ainsi que des différentes informations du moteur grâce à un df
         et aux méthodes de calcul de l'émission CO2
         
-        :param modele: Modele du moteur 
+        :param modele: Modèle du moteur 
         :type modele: string
-        :param df_global: Dataframe contenant les informations de tous les moteurs
-        :type constructeur: Pandas Dataframe
+        :param df_engine: Dataframe contenant les informations de tous les moteurs
+        :type df_engine: Pandas Dataframe
         '''
         try: 
             self.modele = modele 
             #Selectionne et retourne la ligne de notre dataframe contenant le modèle de notre moteur avec ses informations
-            self.df_moteur = df_global.loc[df_global['Modele'] == modele]
+            self.df_moteur = df_engine.loc[df_engine['Modele'] == modele]
             #On réinitialise l'index à 1
             self.df_moteur.reset_index(drop=True, inplace=True)
             #Masse de CO2 émise durant la phase LTO (g)
@@ -30,8 +32,6 @@ class Moteur():
             print("Le modèle de moteur saisi n'est pas dans notre base de donnée ou est mal orthographié")
             exit()
             
-        
-   
     #Méthodes 
     def Conversion_Equivalent_Carbone (self, HC_value, CO_value, NOx_value):
         '''
@@ -45,7 +45,7 @@ class Moteur():
         :param NOx_value: Taux Oxyde d'Azote NOx 
         :type NOx_value: float
         
-        :return: Renvoi les taux équivalent CO2 .
+        :return: Renvoi les taux équivalent CO2 [HC, CO, NOx].
         :rtype: liste.
         '''
         #Potentiel Réchauffement Global des gaz étudiés
@@ -65,6 +65,7 @@ class Moteur():
         '''    
         #Conversion en équivalent carbone
         equivalent_carbone = self.Conversion_Equivalent_Carbone(self.df_moteur.loc[0,'HC_LTO'],self.df_moteur.loc[0,'CO_LTO'],self.df_moteur.loc[0,'NOx_LTO'])
+        #Somme des emissions des différents gaz convertis en carbone
         masse_CO2_LTO = sum(equivalent_carbone)
         return masse_CO2_LTO
     

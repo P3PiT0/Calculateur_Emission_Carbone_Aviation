@@ -61,8 +61,8 @@ if Donnees_dict['comparaison_VOLS']:
     print('\n\nMENU COMPARAISON DE VOLS')
     print('Voici la comparaison des émissions de CO2 de deux vols')
     #Création de nos objets voyages et compagnies (seulement leur section "passager")
-    voyage1 = Modules.travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
-    voyage2 = Modules.travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
+    voyage1 = Modules.Travel(Donnees_dict['arrive_airport1'], Donnees_dict['depart_airport1'], Donnees_dict['avion1'])
+    voyage2 = Modules.Travel(Donnees_dict['arrive_airport2'], Donnees_dict['depart_airport2'], Donnees_dict['avion2'])
     compagnie_travel1 = Modules.AirlinePassenger(Donnees_dict['compagnie_travel1'], df_airline, df_fleet, df)
     compagnie_travel2 = Modules.AirlinePassenger(Donnees_dict['compagnie_travel2'], df_airline, df_fleet, df)
     
