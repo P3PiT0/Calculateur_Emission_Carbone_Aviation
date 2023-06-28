@@ -5,8 +5,8 @@
 
  Ce projet a été développé sous forme d'application pouvant être facilement installée et désintallée de l'ordinateur du client.
 
-## Contenu du dépôt 
-Le dépôt est composé de XX dossiers et fichiers distinct :
+## Contenu du paquet 
+Le paquet est composé de XX dossiers et fichiers distinct :
 1. build :
 2. Data
 3. Documentation (À effacer?)
@@ -157,4 +157,18 @@ La méthode pollution_trajet calcule et renvoie les émissions de CO2 du trajet 
 
 En résumé, le script représente une classe travel qui permet de calculer la distance de croisière d'un voyage entre deux aéroports et d'estimer les émissions de CO2 du trajet en utilisant les données sur l'avion et ses moteurs.
 
+## Ressources utilisées
 
+
+## Références
+1. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Programmation Orientée Objet: Classes et Objets*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 43 p.
+2. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Modules: Documentation*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 20 p.
+3. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Modules: Introduction aux modules*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 25 p.
+4. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Analyse numérique*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 31 p.
+5. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Introduction à l'analyse de données*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 25 p.
+6. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Programmation scientifique avec NumPy*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 39 p.
+7. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Git: Gestion de version*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 24 p.
+8. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Fonctions: Introduction aux fonctions*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 34 p.
+9. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Scriptage: Scripts*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 50 p.
+10. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Environnement de travail: Installation de Python*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 38 p.
+11. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Notions de base: Module 1.b*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie mécanique. Montréal: École de technologie supérieure. 72 p.
