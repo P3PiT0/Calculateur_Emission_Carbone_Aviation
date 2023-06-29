@@ -4,8 +4,7 @@
  Ce projet a été développé sous forme d'application modulable pouvant être facilement installée et désintallée localement. 
 
 ## Sommaire 
-[1. Contenu du paquet] (#contenu)
-
+<a href="#contenu">1. Contenu du paquet</a>
 
 
 ## Contenu du paquet <span id="contenu"></span>
