@@ -5,34 +5,40 @@
 
 ## Sommaire 
 <a href="#contenu">1. Contenu du paquet</a>
+
 <a href="#notice">2. Notice d'utilisation</a>
+
 <a href="#module">3. Modules, classes, méthodes et fonctions utilisées</a>
+
 <a href="#user">4. Pour les utilisateurs</a>
+
 <a href="#dev">5. Pour les développeurs</a>
+
 <a href="#ressources">6. Ressources utilisées</a>
+
 <a href="#ref">7. Références</a>
 
 
 ## Contenu du paquet <span id="contenu"></span>
 Le paquet est composé de 11 dossiers et fichiers distincts :
-1. Data : Contient les fichiers .csv
-2. Images : Dossier contenant les images
-3. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code
-4. build : Contient les fichiers .html pour la documentation de l'application, généré par Sphinx
-5. source: Contient les fichiers nécessaires à la création de la documentation avec Sphinx
+1. Data : Contient les fichiers .csv contenant les données.
+2. Images : Dossier contenant les images utilisées dans EXEMPLE.md.
+3. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code.
+4. build : Contient les fichiers .html pour la documentation de l'application, généré par Sphinx.
+5. source: Contient les fichiers nécessaires à la création de la documentation avec Sphinx.
 6. .gittatributes
 7. .gitignore
-8. EXEMPLE.md
-9. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées 
+8. EXEMPLE.md : Contient un exemple d'utilisation du programme ainsi que des conseils pour modifier certains paramètres internes.
+9. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées
 avec l'usage de cette application.
-10. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application
+10. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application.
 11. Makefile
 12. README.md : Fichier contenant des informations générales sur l'application, les étapes d'installation et 
-les instructions d'opération
+les instructions d'opération.
 13. make.bat
-14. requirements.txt : Fichier texte permettant l'utilisateur d'identifier et installer tous les modules nécessaires à l'application
-15. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application
-16. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
+14. requirements.txt : Fichier texte permettant à l'utilisateur d'identifier et installer tous les modules nécessaires à l'application.
+15. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application.
+16. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application.
 
 
 ## Notice d'utilisation <span id="notice"></span>
