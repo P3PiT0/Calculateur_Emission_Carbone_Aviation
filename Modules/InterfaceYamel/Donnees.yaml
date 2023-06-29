@@ -10,6 +10,9 @@
 #Pour la liste des compagnies prises en charge, veillez vous référer au tableau 'AirCarrierData.csv' puis entrer la chaine de caractere correspondant à colonne 'AirCarrier' de ce fchier
 #Pour la liste des avions pris en charge, veillez vous rérérer au tableu 'list_aircrafts.csv' puis entrer la chaîne de caractères exacte qui vous convient
 #Pour la liste des aéroports pris en charge, veillez vous référer au tableu 'list_airports.csv' puis entrer puis entrer le code IATA à 3 lettres de l'aéroport choisi
+
+#ATTENTION Si vous effectuez des modifications dans ce fichier pendant l'exécution du 'Main.py', n'oubliez pas de
+#sauvegarder vos modifications à l'aide de la combinaison de touches 'ctrl' + 's' de votre clavier.
 #-----------------------------------------------------------------------------------------------------------------------
 
 #1 COMPARATION DE COMPAGNIES AERIENNES
@@ -38,4 +41,7 @@ compagnie_travel1: 'EASYJET UK'
 arrive_airport2: 'CDG'
 depart_airport2: 'JFK'
 avion2: 'AIRBUS A340 600'
+arrive_airport2: 'JFK'
+depart_airport2: 'CDG'
+avion2: 'BOEING 737 700'
 compagnie_travel2: 'BRITISH AIRWAYS'

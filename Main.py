@@ -26,7 +26,8 @@ def interface_utilisateur():
     if input("\n Validez-vous ces données ? (OUI/NON)") == 'OUI':
         return Donnees_dict
     else:
-        print(input("\n Veuillez remplir le fichier 'Donnees.yaml' comme vous le souhaitez et appuyez sur ENTRER."))
+        print(input("\n Veuillez remplir le fichier 'Donnees.yaml' comme vous le souhaitez, sauvegarder les "
+                    "modifications à l'aide de la combinaison de touches clavier 'ctrl' + 's' et appuyez sur ENTRER."))
         #Sorti de la boucle recursive lorsque l'utilisateur valide le yaml
         return interface_utilisateur()
 
