@@ -5,6 +5,12 @@
 
 ## Sommaire 
 <a href="#contenu">1. Contenu du paquet</a>
+<a href="#notice">2. Notice d'utilisation</a>
+<a href="#module">3. Modules, classes, méthodes et fonctions utilisées</a>
+<a href="#user">4. Pour les utilisateurs</a>
+<a href="#dev">5. Pour les développeurs</a>
+<a href="#ressources">6. Ressources utilisées</a>
+<a href="#ref">7. Références</a>
 
 
 ## Contenu du paquet <span id="contenu"></span>
@@ -29,7 +35,7 @@ les instructions d'opération
 16. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
 
 
-## Notice d'utilisation
+## Notice d'utilisation <span id="notice"></span>
 ### Installation 
 1. Téléchargez le dossier compressé contenant l'application sur votre ordinateur.
 2. Extraire le dossier compressé.
@@ -40,6 +46,8 @@ les instructions d'opération
 7. Ouvrez une invite de commande ou un terminal et se rendre dans le répertoire de travail ou se trouve le fichier main.py.
 8. Exécutez le programme .
 
+**Pour plus de détail pour le fonctionnement et la prise en mains du programme se rendre dans EXEMPLE.md**
+
 ### Avant d'exécuter l'application
 Avant d'exécuter l'application, assurez-vous d'avoir fait vos sélections dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'. Ce fichier regroupe les différents paramètres utilisateurs.
 
@@ -49,7 +57,7 @@ Pour exécuter l'application, ouvrez et exécutez le fichier 'Main.py'.
 ### Modification du code par l'utilisateur
 La seule modification nécessaire du code fait par l'utilisateur, est la sélection des choix et paramètres dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'.
 
-## Modules, classes, méthodes et fonctions utilisées:
+## Modules, classes, méthodes et fonctions utilisées: <span id="module"></span>
 Tous les modules employés dans cette application se retrouvent dans le dossier "Modules". Les modules sont regroupés dans des sous-dossiers. A noter que des informations supplémentaires sont disponibles dans la documentation sphinx. 
 
 ### 1. Module Avion
@@ -160,18 +168,24 @@ La méthode "__pollution_trajet__" calcule et renvoie l'émission de CO2 du traj
 
 Le code utilise également des fonctions et des constantes mathématiques du module math pour effectuer les calculs géographiques et mathématiques nécessaires.
 
-## Pour les utilisateurs : 
+## Pour les utilisateurs : <span id="user"></span>
 
-## Pour les développeur :
+Avant l'utilisation du code, consultez **'EXEMPLE.md'**. Ce fichier explique comment saisir les données utilisateurs, comment mettre à jour les bases de données et contient un exemple d'exécution.
+
+De la documentation supplémentaire est accessible (documentation sphinx html) afin de comprendre les fonctionnalités proposées : **Build > Html > fichier.py > télécharger format raw**.
+
+## Pour les développeur : <span id="dev"></span>
 Le code est développer de façon modulaire et sous forme de programmation orientée objet. Il est ainsi plus facile d'apporter des modifications au code. 
- 
+
+De la documentation supplémentaire est accessible (documentation sphinx html) afin de comprendre comment le code à été développé: **Build > Html > fichier.py > télécharger format raw**.
+
 ### Améliorations potentielles 
 - L'une des principale amélioration possible est d'abord de trouver une base de donnée plus exhaustive, notamment concernant les compagnies aériennes. En effet, lors de notre développement nous nous sommes contenté de mettre au point des fonctionnalités pour exploiter notre dataset restreint.
 - Afin de simplifier l'implémentation, nous avons traité les informations des avions manuellement (modèle de moteurs unique, mach de croisière, passager etc...). Il peut être intéressant de trouver une autre base de donnée contenant ces informations, et ne pas limiter un modèle d'avion à un seul moteur. 
 - Dans le cas ou un avion/moteur/compagnie n'est pas dans notre base de donnée, il peut être intéressant d'inviter l'utilisateur à saisir les informations manquantes. 
 - Les calculs sont également fait à partir d'estimation (distance de trajet, ne prends pas en compte le vent, la rotation de la terre, etc...). Ces facteurs peuvent être pris en considération pour obtenir des données plus précises.
 
-## Ressources utilisées
+## Ressources utilisées <span id="ressources"></span>
 ### Données :
 1. Base de donnée sur les compagnies aériennes britanniques (nécessite de créer un compte démo): https://data.icao.int/newDataPlus/Tools (consulté le 2/06/2023).
 2. Base de donnée contenant les informations sur les différents moteurs : https://www.easa.europa.eu/en/domains/environment/easa-aeroplane-co2-emissions-database-0 (consulté le 2/06/2023).
@@ -179,7 +193,7 @@ Le code est développer de façon modulaire et sous forme de programmation orien
 1. __airportsdata__ : Package permettant d'obtenir les coordonnées des aéroports : https://pypi.org/project/airportsdata/
 2. __Package__ : permettant d'obtenir les informations sur les conditions atmosphériques : https://pypi.org/project/ambiance/
 
-## Références
+## Références <span id="ref"></span>
 1. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Programmation Orientée Objet: Classes et Objets*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie aérospatial. Montréal: École de technologie supérieure. 43 p.
 2. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Modules: Documentation*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie aérospatial. Montréal: École de technologie supérieure. 20 p.
 3. Sanjosé, Marlène. Tabiai, Ilyass. 2023. MGA802 (Été 2023). *Modules: Introduction aux modules*. Notes du cours MGA802 - Introduction à la programmation avec Python. Programme de maîtrise en génie aérospatial. Montréal: École de technologie supérieure. 25 p.
