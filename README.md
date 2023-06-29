@@ -5,17 +5,20 @@
 
 ## Contenu du paquet 
 Le paquet est composé de 11 dossiers et fichiers distincts :
-1. build :
-2. Data
-3. Documentation (À effacer?)
-4. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code
-5. source
-6. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées 
+1. Data : Contient les fichiers .csv
+2. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code
+3. build : Contient les fichiers .html pour la documentation de l'application, généré par Sphinx
+4. source: Contient les fichiers nécessaires à la création de la documentation avec Sphinx
+5. .gittatributes
+6. .gitignore
+7. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées 
 avec l'usage de cette application.
-7. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application
-8. README.md : Fichier contenant des informations générales sur l'application, les étapes d'installation et 
+8. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application
+9. Makefile
+10. README.md : Fichier contenant des informations générales sur l'application, les étapes d'installation et 
 les instructions d'opération
-9. requirements.txt : Fichier texte permettant l'utilisateur d'identifier et installer tous les modules nécessaires à l'application
+10. make.bat
+11. requirements.txt : Fichier texte permettant l'utilisateur d'identifier et installer tous les modules nécessaires à l'application
 10. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application
 11. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
 
