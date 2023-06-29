@@ -6,21 +6,23 @@
 ## Contenu du paquet 
 Le paquet est composé de 11 dossiers et fichiers distincts :
 1. Data : Contient les fichiers .csv
-2. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code
-3. build : Contient les fichiers .html pour la documentation de l'application, généré par Sphinx
-4. source: Contient les fichiers nécessaires à la création de la documentation avec Sphinx
-5. .gittatributes
-6. .gitignore
-7. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées 
+2. Images : Dossier contenant les images
+3. Modules : Contient tous les packages, modules et scritps python nécessaires à l'utilisation et l'exécution du code
+4. build : Contient les fichiers .html pour la documentation de l'application, généré par Sphinx
+5. source: Contient les fichiers nécessaires à la création de la documentation avec Sphinx
+6. .gittatributes
+7. .gitignore
+8. EXEMPLE.md
+9. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées 
 avec l'usage de cette application.
-8. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application
-9. Makefile
-10. README.md : Fichier contenant des informations générales sur l'application, les étapes d'installation et 
+10. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application
+11. Makefile
+12. README.md : Fichier contenant des informations générales sur l'application, les étapes d'installation et 
 les instructions d'opération
-10. make.bat
-11. requirements.txt : Fichier texte permettant l'utilisateur d'identifier et installer tous les modules nécessaires à l'application
-10. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application
-11. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
+13. make.bat
+14. requirements.txt : Fichier texte permettant l'utilisateur d'identifier et installer tous les modules nécessaires à l'application
+15. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application
+16. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application
 
 
 ## Notice d'utilisation
