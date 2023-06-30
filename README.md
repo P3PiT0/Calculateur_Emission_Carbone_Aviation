@@ -1,5 +1,5 @@
 # Calculateur_Emission_Carbone_Aviation
- Cette application a pour but de proposer un outil développé en Python permettant de calculer l'émpreinte carbone de différentes compagnies aériennes ou les émissions d'un avions sur un trajet entre deux aéroports choisis.
+ Cette application a pour but de proposer un outil développé en Python permettant de calculer l'émpreinte carbone de différentes compagnies aériennes ou les émissions d'un avion sur un trajet entre deux aéroports choisis.
 
  Ce projet a été développé sous forme d'application modulable pouvant être facilement installée et désintallée localement. 
 
@@ -29,7 +29,7 @@ Le paquet est composé de 11 dossiers et fichiers distincts :
 6. .gittatributes
 7. .gitignore
 8. EXEMPLE.md : Contient un exemple d'utilisation du programme ainsi que des conseils pour modifier certains paramètres internes.
-9. LICENSE.md : Contient la license utilisé pour ce projet, ainsi que toutes les autorisations et limitations engendrées
+9. LICENSE.md : Contient la license utilisée pour ce projet, ainsi que toutes les autorisations et limitations engendrées
 avec l'usage de cette application.
 10. Main.py : Script Python à éxécuter permettant de faire fonctionner l'application.
 11. Makefile
@@ -37,22 +37,22 @@ avec l'usage de cette application.
 les instructions d'opération.
 13. make.bat
 14. requirements.txt : Fichier texte permettant à l'utilisateur d'identifier et installer tous les modules nécessaires à l'application.
-15. setup.cfg : Fichier utiliser pour l'installation et l'initialisation de l'application.
-16. setup.py : Fichier utiliser pour l'installation et l'initialisation de l'application.
+15. setup.cfg : Fichier utilisé pour l'installation et l'initialisation de l'application.
+16. setup.py : Fichier utilisé pour l'installation et l'initialisation de l'application.
 
 
 ## Notice d'utilisation <span id="notice"></span>
 ### Installation 
 1. Téléchargez le dossier compressé contenant l'application sur votre ordinateur.
 2. Extraire le dossier compressé.
-3. Sur votre logiciel de préférence supportant Python, ouvrez le dossier principal de l'application.
+3. Sur votre logiciel, de préférence supportant Python, ouvrez le dossier principal de l'application.
 4. Ouvrez le dossier où se situe le fichier 'setup.py'.
 5. Dans le terminal de votre logiciel, exécuter le fichier 'setup.py' à l'aide de la commande: `python setup.py install`.
 6. L'application est maintenant prête à être utilisée.
 7. Ouvrez une invite de commande ou un terminal et se rendre dans le répertoire de travail ou se trouve le fichier main.py.
 8. Exécutez le programme .
 
-**Pour plus de détail pour le fonctionnement et la prise en mains du programme se rendre dans EXEMPLE.md**
+**Pour plus de détail pour le fonctionnement et la prise en main du programme se rendre dans EXEMPLE.md**
 
 ### Avant d'exécuter l'application
 Avant d'exécuter l'application, assurez-vous d'avoir fait vos sélections dans le fichier 'Données.yaml' situé dans le dossier 'Modules\Interfaceyaml'. Ce fichier regroupe les différents paramètres utilisateurs.
@@ -99,7 +99,7 @@ Ce code est une implémentation d'un modèle de simulation pour analyser les ém
 
 La classe principale est "__Airline__", qui représente une compagnie aérienne composée d'une flotte d'avions. Elle possède un attribut compagnie pour stocker le nom de la compagnie. Le constructeur de cette classe prend en paramètre les informations sur la compagnie (nom, données sur la compagnie, la flotte, et les émissions des moteurs).
 
-La méthode "__CO2_total_compagnie calcule__" les émissions totales de CO2 de la compagnie en fonction du segment spécifié (global, passager ou cargo). Elle itère sur les avions de la flotte de la compagnie et utilise la classe Aircraft pour obtenir les données de consommation des moteurs et calculer les émissions.
+La méthode "__CO2_total_compagnie__" calcule les émissions totales de CO2 de la compagnie en fonction du segment spécifié (global, passager ou cargo). Elle itère sur les avions de la flotte de la compagnie et utilise la classe Aircraft pour obtenir les données de consommation des moteurs et calculer les émissions.
 
 La méthode "__Repartition_Utilisation_Flotte__" affiche un graphique de type "pie chart" qui représente la répartition de l'utilisation de chaque modèle d'avion par rapport au temps de vol total de la compagnie.
 
@@ -114,7 +114,7 @@ Enfin, la fonction "__Comparaison_Emission_Compagnie__" utilise les classes Airl
 
 Ce code définit une classe appelée "__Moteur__" qui représente un moteur d'avion et permet de calculer ses émissions de CO2. Voici un résumé du code :
 
-La classe "__Moteur représente__" un moteur d'avion et contient plusieurs méthodes pour effectuer des calculs liés aux émissions de CO2.
+La classe "__Moteur__" représente un moteur d'avion et contient plusieurs méthodes pour effectuer des calculs liés aux émissions de CO2.
 
 Le constructeur __init__ prend deux paramètres : "__modele__" (le modèle du moteur) et "__df_engine__" (un DataFrame contenant les informations de tous les moteurs).
 Dans le constructeur, les attributs de l'objet moteur sont initialisés en utilisant les informations du DataFrame df_engine.
@@ -151,7 +151,7 @@ La fonction "__Emission_Data_Reader__" lit les données de la banque de données
 
 La fonction "__Airline_Data_Reader__" lit les données concernant le pourcentage d'occupation des avions et le nombre de passagers des différentes compagnies aériennes étudiées. Elle charge un fichier CSV contenant ces informations, sélectionne les colonnes pertinentes et les renomme, puis retourne un dataframe Pandas contenant les données modifiées et prêtes à être exploitées.
 
-La fonction "__Utilization_Data_Reader__" lit les données concernant les avions composant la flotte des compagnies aériennes étudiées et les informations sur leur utilisation. Elle charge un fichier CSV contenant ces informations, sélectionne les colonnes pertinentes et les renomme, convertit certaines colonnes en type float, puis retourne un dataframe Pandas contenant les données modifiées et prêtes à être exploitées.
+La fonction "__Utilization_Data_Reader__" lit les données concernant les avions composants la flotte des compagnies aériennes étudiées et les informations sur leur utilisation. Elle charge un fichier CSV contenant ces informations, sélectionne les colonnes pertinentes et les renomme, convertit certaines colonnes en type float, puis retourne un dataframe Pandas contenant les données modifiées et prêtes à être exploitées.
 
 Il y a également un commentaire pour une fonction supplémentaire "__Airport_Data_Reader__" qui n'est pas implémentée dans le code. Cette fonction était destinée à lire les données du module airportsdata et à récupérer les informations sur les aéroports anglais, mais elle est actuellement commentée.
 
@@ -186,10 +186,10 @@ Le code est développer de façon modulaire et sous forme de programmation orien
 De la documentation supplémentaire est accessible (documentation sphinx html) afin de comprendre comment le code à été développé: **Build > Html > fichier.py > télécharger format raw**.
 
 ### Améliorations potentielles 
-- L'une des principale amélioration possible est d'abord de trouver une base de donnée plus exhaustive, notamment concernant les compagnies aériennes. En effet, lors de notre développement nous nous sommes contenté de mettre au point des fonctionnalités pour exploiter notre dataset restreint.
+- L'une des principales améliorations possibles est d'abord de trouver une base de donnée plus exhaustive, notamment concernant les compagnies aériennes. En effet, lors de notre développement nous nous sommes contenté de mettre au point des fonctionnalités pour exploiter notre dataset restreint.
 - Afin de simplifier l'implémentation, nous avons traité les informations des avions manuellement (modèle de moteurs unique, mach de croisière, passager etc...). Il peut être intéressant de trouver une autre base de donnée contenant ces informations, et ne pas limiter un modèle d'avion à un seul moteur. 
 - Dans le cas ou un avion/moteur/compagnie n'est pas dans notre base de donnée, il peut être intéressant d'inviter l'utilisateur à saisir les informations manquantes. 
-- Les calculs sont également fait à partir d'estimation (distance de trajet, ne prends pas en compte le vent, la rotation de la terre, etc...). Ces facteurs peuvent être pris en considération pour obtenir des données plus précises.
+- Les calculs sont également faits à partir d'estimation (distance de trajet, ne prends pas en compte le vent, la rotation de la terre, etc...). Ces facteurs peuvent être pris en considération pour obtenir des données plus précises.
 
 ## Ressources utilisées <span id="ressources"></span>
 ### Données :
