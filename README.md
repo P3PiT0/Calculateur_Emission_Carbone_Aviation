@@ -180,7 +180,7 @@ Avant l'utilisation du code, consultez **'EXEMPLE.md'**. Ce fichier explique com
 
 De la documentation supplémentaire est accessible (documentation sphinx html) afin de comprendre les fonctionnalités proposées : **Build > Html > fichier.py > télécharger format raw**.
 
-## Pour les développeur : <span id="dev"></span>
+## Pour les développeurs : <span id="dev"></span>
 Le code est développer de façon modulaire et sous forme de programmation orientée objet. Il est ainsi plus facile d'apporter des modifications au code. 
 
 De la documentation supplémentaire est accessible (documentation sphinx html) afin de comprendre comment le code à été développé: **Build > Html > fichier.py > télécharger format raw**.
